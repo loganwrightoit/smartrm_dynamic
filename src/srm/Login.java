@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import srm.dao.UserDAO;
+import srm.model.UserModel;
+
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 
@@ -34,23 +37,19 @@ public class Login extends HttpServlet {
 		String u_name = request.getParameter("u_name");
 		String u_pass = request.getParameter("u_pass");
 		
-		// NOTE: Need business logic hook to verify with database
-		if ("Logan".equals(u_name) && "123".equals(u_pass)) {
-			System.out.println("Admin logged in.");
-		} else if ("John".equals(u_name) && "123".equals(u_pass)) {
-			System.out.println("User logged in.");
-		} else {
-			request.setAttribute("message", "Login failed");
-			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-	        return;
+		// Grab credentials from database
+		UserDAO dao = new UserDAO();
+		UserModel user = dao.readUserData(u_name);
+		if (user != null && user.getU_pass().equals(u_pass)) {
+			// Continue to main
+			session.setAttribute("logged_in", true);
+			session.setAttribute("u_name", u_name);
+			response.sendRedirect(request.getContextPath() + "/Main");
+			return;
 		}
-		
-		session.setAttribute("logged_in", true);
-		session.setAttribute("u_name", u_name);
-
-		// Redirect to main page
-		response.sendRedirect(request.getContextPath() + "/Main");
-		//request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+	
+		request.setAttribute("message", "Login failed");
+		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
 
 }
