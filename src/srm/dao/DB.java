@@ -10,7 +10,7 @@ public class DB {
 		try
 		{
 			Class.forName("oracle.jdbc.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.43.144:1521:XE", "system", "syntel123$");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "system", "syntel123$");
 		}
 		catch(Exception ex)
 		{
