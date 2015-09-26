@@ -85,7 +85,7 @@ public class UserDAO
 	 */
 	public UserModel readUserData(int u_id)
 	{
-		String query = "SELECT ? FROM userdata";
+		String query = "SELECT * FROM userdata WHERE u_id = ?";
 		
     	try {
     		Connection cxn = DB.getDBConnection(); 
@@ -97,6 +97,37 @@ public class UserDAO
     		if (!rset.isBeforeFirst()) {
     			return null;
     		} else {
+    			return new UserModel(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4));
+    		}
+
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+		
+		return null;
+	}
+	
+	/**
+	 * Reads user data from database.
+	 * 
+	 * @param u_name the user name
+	 * @return a matching {@link UserModel} object, or <code>null</code> if no record found
+	 */
+	public UserModel readUserData(String u_name)
+	{
+		String query = "SELECT * FROM userdata WHERE u_name = ?";
+		
+    	try {
+    		Connection cxn = DB.getDBConnection(); 
+	        PreparedStatement pstat = cxn.prepareStatement(query);
+	        pstat.setString(1, u_name);
+    		ResultSet rset = pstat.executeQuery();
+
+    		// Test for empty set
+    		if (!rset.isBeforeFirst()) {
+    			return null;
+    		} else {
+    			rset.next();
     			return new UserModel(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4));
     		}
 
