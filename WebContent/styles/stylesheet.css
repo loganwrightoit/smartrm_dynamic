@@ -43,8 +43,19 @@ body, html {
 
 div.login {
 	margin: 0 auto;
-	width: 400px;
+	width: 350px;
 	padding: 20px;
+	text-align: center;
+}
+
+div.login table {
+	width: 100%;
+}
+
+li.login-status {
+	width: 200px;
+	padding: 15px 0 15px 0;
+	float: right;
 }
 
 .inner-wrapper {
@@ -60,7 +71,7 @@ div.content {
 }
 
 div.login-content {
-	padding: 10px 10px 45px 10px;
+	padding: 50px 10px 45px 10px;
 }
 
 table {

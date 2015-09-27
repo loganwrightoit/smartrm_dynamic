@@ -17,7 +17,7 @@ public class BookingModel {
 		
 	}
 	
-	public BookingModel(int b_id, int l_id, int rr_id, int u_id, TimeStamp start_time, TimeStamp end_time, String specialrequests, String purpose)
+	public BookingModel(int b_id, int l_id, int rr_id, int u_id, Timestamp start_time, Timestamp end_time, String specialrequests, String purpose)
 	{
 		this.b_id = b_id;
 		this.l_id = l_id;

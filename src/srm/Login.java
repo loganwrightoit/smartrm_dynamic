@@ -21,8 +21,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		System.out.println("Called doGet for Login");
-		
 		request.getRequestDispatcher("/WEB-INF/login.jsp").include(request, response);
 	}
 	
@@ -48,7 +46,7 @@ public class Login extends HttpServlet {
 			return;
 		}
 	
-		request.setAttribute("message", "Login failed");
+		request.setAttribute("message", "Login failed, please try again.");
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
 

@@ -9,25 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/Main")
-public class Main extends HttpServlet
-{
-	private static final long serialVersionUID = 1L;
+@WebServlet("/Logout")
+public class Logout extends HttpServlet {
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		// Check if user logged in
-		HttpSession session = request.getSession(true);
-		Object obj = session.getAttribute("logged_in");
-		if (obj != null && !Boolean.parseBoolean(obj.toString()) || obj == null)
-		{
-			response.sendRedirect(request.getContextPath() + "/Login");
-		} else {
-			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-		}
+		HttpSession session = request.getSession();
+		session.removeAttribute("logged_in");
+		response.sendRedirect(request.getContextPath() + "/Login");
 	}
 
 }

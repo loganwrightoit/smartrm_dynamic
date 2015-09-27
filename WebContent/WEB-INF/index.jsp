@@ -21,24 +21,23 @@
                 <hr>
                 -->
                 <nav class="navbar navbar-default dark-border">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="index.jsp">
-                                <img src="images/sbutton.png" height="20px" width="20px"></img>
-                            </a>
-                        </div>
-
+                    <div class="container-fluid" style="padding: 0; margin: 0;">
                         <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="padding: 0; margin: 0;">
+                            <ul class="nav navbar-nav" style="width: 100%;">
+                            	<li>
+                            		<a href="index.jsp">
+                                		<img src="images/sbutton.png" height="20px" width="20px"></img>
+                            		</a>
+                            	</li>
 	                            <li id="home" class="active"><a>Home</a></li>
 	                            <li id="location"><a>Location</a></li>
 	                            <li id="resource"><a>Resource</a></li>
 	                            <li id="booking"><a>Booking</a></li>
+	                            <li class="login-status"><small>Logged in as ${u_name} (<a href="Logout">Logout</a>)</small></li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
-                        
+
                     </div><!-- /.container-fluid -->
                 </nav>
             </header>
