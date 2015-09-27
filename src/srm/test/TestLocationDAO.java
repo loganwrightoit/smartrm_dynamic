@@ -75,8 +75,8 @@ public class TestLocationDAO {
 	
 
 	
-	
-	public void testInsert()
+	@Test
+	public void testInsert() throws SQLException
 	{
 		LocationDAO d=new LocationDAO();
 		boolean isWorking=d.insertLocation("Testloc", "Test", "7777777", "Thomas", "Memphis", "US", 10);
