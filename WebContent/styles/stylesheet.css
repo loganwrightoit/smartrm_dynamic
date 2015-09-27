@@ -59,6 +59,10 @@ div.content {
     padding: 10px 10px 45px 10px;
 }
 
+div.login-content {
+	padding: 10px 10px 45px 10px;
+}
+
 table {
     margin: 2px !important;
 }
