@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	
     // this handles the default page loaded at start
-    $(".content").load("views/welcome.jsp");
+    //$(".content").load("views/welcome.jsp");
     
         // display home.html when home button clicked
 	$("#home").click(function(){
