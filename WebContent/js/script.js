@@ -7,22 +7,22 @@ $(document).ready(function(){
 	$("#home").click(function(){
 		$(".content").load("views/welcome.jsp");
         console.log("home clicked");
-	})
+	});
         // display resource.html when resource button clicked
 	$("#resource").click(function(){
 		$(".content").load("views/resource.jsp");
 		console.log("resource clicked");
-	})
+	});
 	// display location.html when resource button clicked
 	$("#location").click(function(){
 		$(".content").load("views/location.jsp");
 		console.log("location clicked");
-	})
+	});
         // display booking html when booking button clicked
 	$("#booking").click(function(){
 		$(".content").load("views/booking.jsp");
 		console.log("booking clicked");
-	})
+	});
         // changes the button color when hovered
        /*
 	 $("header div").hover(function(){

@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class LocationDAO {
 	
 
-    public boolean viewLocation() throws SQLException
+    public ArrayList viewLocation() throws SQLException
     {
     	try
     	{
