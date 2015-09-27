@@ -42,6 +42,7 @@ public class Login extends HttpServlet {
 			// Continue to main
 			session.setAttribute("logged_in", true);
 			session.setAttribute("u_name", u_name);
+			session.setAttribute("u_level", user.getU_level());
 			response.sendRedirect(request.getContextPath() + "/Main");
 			return;
 		}

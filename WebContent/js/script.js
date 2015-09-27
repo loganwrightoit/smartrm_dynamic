@@ -63,16 +63,16 @@ $(document).ready(function(){
          {
             if($("#rresource").val() == "ch")
             {
-                $("content").load("addnewconferencehall.html");
+                $(".content").load("addnewconferencehall.html");
                 console.log("test");
             }
             if($("#rresource").val() == "esc")
             {
-                $("content").load("esc_register.html");
+                $(".content").load("esc_register.html");
             }
             if($("#rresource").val() == "mr")
             {
-                $("content").load("registermeetingroom.html");
+                $(".content").load("registermeetingroom.html");
             }            
          })
 
@@ -80,16 +80,16 @@ $(document).ready(function(){
          {
             if($("#rresource").val() == "ch")
             {
-                $("content").load("updateconferencehall.html");
+                $(".content").load("updateconferencehall.html");
                 console.log("test");
             }
             if($("#rresource").val() == "esc")
             {
-                $("content").load("esc_update.html");
+                $(".content").load("esc_update.html");
             }
             if($("#rresource").val() == "mr")
             {
-                $("content").load("updatemeetingroom.html");
+                $(".content").load("updatemeetingroom.html");
             }
          })
          
@@ -97,16 +97,16 @@ $(document).ready(function(){
          {
             if($("#rresource").val() == "ch")
             {
-                $("content").load("removeconferencehall.html");
+                $(".content").load("removeconferencehall.html");
                 console.log("test");
             }
             if($("#rresource").val() == "esc")
             {
-                $("content").load("esc_delete.html");
+                $(".content").load("esc_delete.html");
             }
             if($("#rresource").val() == "mr")
             {
-                $("content").load("deletemeetingroom.html");
+                $(".content").load("deletemeetingroom.html");
             }
          })
          
@@ -114,17 +114,17 @@ $(document).ready(function(){
          
          $(document).on('click','#newlocation',function(event)
          {
-            $("content").load("location_register.html");         
+            $(".content").load("views/location_add.jsp");         
          })
 
          $(document).on('click','#updatelocation',function(event)
          {
-            $("content").load("location_update.html");
+            $(".content").load("views/location_update.jsp");
          })
          
          $(document).on('click','#deletelocation',function(event)
          {
-            $("content").load("location_delete.html");
+            $(".content").load("views/location_delete.jsp");
          })
 
 	

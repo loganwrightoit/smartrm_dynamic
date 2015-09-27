@@ -57,7 +57,7 @@ public class UpdateLocation extends HttpServlet {
 		LocationDAO d=new LocationDAO();
 		boolean works=d.updateLocationDetails(id, locPhone, locHead, locCity, locCountry, locTimezone);
 		
-		RequestDispatcher rd=getServletContext().getRequestDispatcher("views/report.jsp");
+		RequestDispatcher rd=getServletContext().getRequestDispatcher("/views/report.jsp");
 		
 		rd.include(req, res);
 		

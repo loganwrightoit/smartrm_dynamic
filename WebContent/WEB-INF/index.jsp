@@ -31,8 +31,10 @@
                             		</a>
                             	</li>
 	                            <li id="home" class="active"><a>Home</a></li>
-	                            <li id="location"><a>Location</a></li>
-	                            <li id="resource"><a>Resource</a></li>
+	                            <c:if test="${u_level=='admin'}">
+		                            <li id="location"><a>Location</a></li>
+		                            <li id="resource"><a>Resource</a></li>
+	                            </c:if>
 	                            <li id="booking"><a>Booking</a></li>
 	                            <li class="login-status"><small>Logged in as ${u_name} (<a href="Logout">Logout</a>)</small></li>
                             </ul>
