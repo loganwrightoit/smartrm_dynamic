@@ -29,17 +29,17 @@ public class BookingDAO {
 						
 			
 			while(data.next())
-			{
-				BookingModel tmp = new BookingModel();
-				tmp.setB_id(data.getInt(1));
-				tmp.setL_id(data.getInt(2));
-				tmp.setRr_id(data.getInt(3));
-				tmp.setU_id(data.getInt(4));
-				tmp.setStart_time(Timestamp.valueOf(data.getString(5)));
-				tmp.setEnd_time(Timestamp.valueOf(data.getString(6)));
-				tmp.setSpecialrequests(data.getString(7));
-				tmp.setPurpose(data.getString(8));
-				al.add(tmp);
+			{	
+				al.add(new BookingModel(
+						data.getInt(1),
+						data.getInt(2),
+						data.getInt(3),
+						data.getInt(4),
+						Timestamp.valueOf(data.getString(5)),
+						Timestamp.valueOf(data.getString(6)),
+						data.getString(7),
+						data.getString(8)
+						));
 			}
 			return al;
 		}
