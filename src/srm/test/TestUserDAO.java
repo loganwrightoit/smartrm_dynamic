@@ -1,4 +1,4 @@
-package test;
+package srm.test;
 
 import static org.junit.Assert.*;
 
