@@ -26,7 +26,7 @@ public class Main extends HttpServlet
 		{
 			response.sendRedirect(request.getContextPath() + "/Login");
 		} else {
-			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request, response);
 		}
 	}
 
