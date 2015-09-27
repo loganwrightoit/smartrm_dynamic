@@ -184,20 +184,20 @@ public class LocationDAO {
     	return loc;
     }    
     
-	public boolean insertLocation(int lId, String lName, String lDesc, String lPhone, String lHead, String lCity, String lCountry, int lTimeZone)
+	public boolean insertLocation(String lName, String lDesc, String lPhone, String lHead, String lCity, String lCountry, int lTimeZone)
 	{
 		try
 		{
-			String insSt="INSERT INTO Location VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			String insSt="INSERT INTO Location VALUES (l_id_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stat=DB.getDBConnection().prepareStatement(insSt);
-			stat.setInt(1, lId);
-			stat.setString(2, lName);
-			stat.setString(3, lDesc);
-			stat.setString(4, lPhone);
-			stat.setString(5, lHead);
-			stat.setString(6, lCity);
-			stat.setString(7, lCountry);
-			stat.setInt(8, lTimeZone);
+			
+			stat.setString(1, lName);
+			stat.setString(2, lDesc);
+			stat.setString(3, lPhone);
+			stat.setString(4, lHead);
+			stat.setString(5, lCity);
+			stat.setString(6, lCountry);
+			stat.setInt(7, lTimeZone);
 			int res=stat.executeUpdate();
 			if (res>0)
 				System.out.println("Data inserted");
@@ -270,6 +270,34 @@ public class LocationDAO {
 		}
 		return true;
 	}
+	
+	public boolean updateLocationDetails(int lId, String lPhone, String lHead, String city, String country, int timeZone)
+	{
+		try
+		{
+			String updateSt="UPDATE Location SET l_phone=?, l_head=?, l_city=?, l_country=?, l_timezone=? WHERE l_id=?";
+			PreparedStatement stat=DB.getDBConnection().prepareStatement(updateSt);
+			stat.setString(1, lPhone);
+			stat.setString(2, lHead);
+			stat.setString(3, city);
+			stat.setString(4, country);
+			stat.setInt(5, timeZone);
+			stat.setInt(6, lId);
+			int res=stat.executeUpdate();
+			if (res>0)
+			{
+				System.out.println("Data updated");
+			}
+		}
+		catch (Exception e)
+		{
+			System.out.println("Error while updating");
+			return false;
+		}
+		return true;
+	}
+	
+	
 	public boolean deleteLocation(int lId)
 	{
 		try
@@ -288,5 +316,6 @@ public class LocationDAO {
 		}
 		return true;
 	}
+	
 
 }
