@@ -37,7 +37,7 @@ public class InsertLocation extends HttpServlet {
 		HttpSession s=req.getSession(true);//true creates new session, even if it exists
 		//blank: if session exists, open it, and if it doesn't, create new one
 		String locName=req.getParameter("l_name");//get  the parameter equal to the name in the input box in the html file
-		String locDesc=req.getParameter("l_description");
+		String locDesc=req.getParameter("l_desc");
 		String locPhone=req.getParameter("l_phone");
 		String locHead=req.getParameter("l_head");
 		String locCity=req.getParameter("l_city");
@@ -46,7 +46,7 @@ public class InsertLocation extends HttpServlet {
 		LocationDAO d=new LocationDAO();
 		boolean works=d.insertLocation(locName, locDesc, locPhone, locHead, locCity, locCountry, locTimezone);
 		
-		RequestDispatcher rd=getServletContext().getRequestDispatcher("views/test.jsp");
+		RequestDispatcher rd=getServletContext().getRequestDispatcher("/views/test.jsp");
 		
 		rd.include(req, res);
 		

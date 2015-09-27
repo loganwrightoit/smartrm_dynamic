@@ -52,7 +52,7 @@ public class DeleteLocation extends HttpServlet {
 		LocationDAO d=new LocationDAO();
 		boolean works=d.deleteLocation(id);
 		
-		RequestDispatcher rd=getServletContext().getRequestDispatcher("views/report.jsp");
+		RequestDispatcher rd=getServletContext().getRequestDispatcher("/views/report.jsp");
 		
 		rd.include(req, res);
 		
