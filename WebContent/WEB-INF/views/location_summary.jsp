@@ -9,14 +9,14 @@
 	
 		<div class="floating-box round-corners">
 			<table class="table table-striped">
-				<tr class="heading">
-					<td>Name</td>
-					<td>Description</td>
-					<td>Phone</td>
-					<td>Head</td>
-					<td>City</td>
-					<td>Country</td>
-					<td>Time Zone</td>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Phone</th>
+					<th>Head</th>
+					<th>City</th>
+					<th>Country</th>
+					<th>Time Zone</th>
 				</tr>
 				<c:forEach items="${locations}" var="item">
 					<tr>
