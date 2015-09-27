@@ -270,6 +270,34 @@ public class LocationDAO {
 		}
 		return true;
 	}
+	
+	public boolean updateLocationDetails(int lId, String lPhone, String lHead, String city, String country, int timeZone)
+	{
+		try
+		{
+			String updateSt="UPDATE Location SET l_phone=?, l_head=?, l_city=?, l_country=?, l_timezone=? WHERE l_id=?";
+			PreparedStatement stat=DB.getDBConnection().prepareStatement(updateSt);
+			stat.setString(1, lPhone);
+			stat.setString(2, lHead);
+			stat.setString(3, city);
+			stat.setString(4, country);
+			stat.setInt(5, timeZone);
+			stat.setInt(6, lId);
+			int res=stat.executeUpdate();
+			if (res>0)
+			{
+				System.out.println("Data updated");
+			}
+		}
+		catch (Exception e)
+		{
+			System.out.println("Error while updating");
+			return false;
+		}
+		return true;
+	}
+	
+	
 	public boolean deleteLocation(int lId)
 	{
 		try
