@@ -17,7 +17,7 @@
 	       		<img src="images/banner_medium.png"></img>
 	       	</header>
         
-            <div class="content" style="text-align: center;">
+            <div class="login-content" style="text-align: center;">
             	<div class="login floating-box round-corners">
             		<h1 class="title">Please Login</h1>
 	
