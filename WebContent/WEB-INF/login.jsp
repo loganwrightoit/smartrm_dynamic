@@ -17,16 +17,14 @@
 	       		<img src="images/banner_medium.png"></img>
 	       	</header>
         
-            <div class="login-content" style="text-align: center;">
+            <div class="login-content">
             	<div class="login floating-box round-corners">
-            		<h1 class="title">Please Login</h1>
-	
-					<c:if test="${not empty message}">
-					    <h3 class="failure">${message}</h3>
-					</c:if>
-					
+            								
 					<form method="post">
 						<table>
+							<tr>
+								<td colspan="2" align="center"><h2>Please Login</h2></td>
+							</tr>
 							<tr>
 								<td>Username</td>
 								<td><input type="text" name="u_name" placeholder="Enter Username" required/></td>
@@ -35,13 +33,16 @@
 								<td>Password</td>
 								<td><input type="password" name="u_pass" placeholder="Enter Password" required/></td>
 							</tr>
-							<tr>
-								<td colspan="2" align="center"><input type="submit" value="Login"/></td>
-							</tr>
 						</table>
+						<br>
+						<input class="btn btn-default" type="submit" value="Login"/>						
 					</form>
-            	</div>
-            					            	            	
+										           	
+	           		<c:if test="${not empty message}">
+					    <h4 class="failure">${message}</h4>
+					</c:if>
+					
+            	</div>            					            	            	
             </div>
                                 
 	        <footer class="dark-border round-corners">
