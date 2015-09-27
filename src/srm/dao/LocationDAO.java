@@ -7,14 +7,18 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.*;
+import srm.model.LocationModel;
 
 public class LocationDAO {
 	
 
-    public ArrayList viewLocation() throws SQLException
+    public ArrayList<LocationModel> viewLocation() throws SQLException
     {
+    	ArrayList<LocationModel> lms=new ArrayList<>();
     	try
     	{
+    		
     		String selSt="Select * FROM Location";
     		Statement stat=DB.getDBConnection().createStatement();
     		ResultSet data=stat.executeQuery(selSt);
@@ -22,15 +26,15 @@ public class LocationDAO {
     		int colCount=meta.getColumnCount();
     		while(data.next())
     		{
-
-    			System.out.println(data.getInt(1));
-    			System.out.println(data.getString(2));
-    			System.out.println(data.getString(3));
-    			System.out.println(data.getString(4));
-    			System.out.println(data.getString(5));
-    			System.out.println(data.getString(6));
-    			System.out.println(data.getString(7));
-    			System.out.println(data.getInt(8));
+    			int id=data.getInt(1);
+    			String name=data.getString(2);
+    			String desc=data.getString(3);
+    			String phone=data.getString(4);
+    			String head=data.getString(5);
+    			String city=data.getString(6);
+    			String country=data.getString(7);
+    			int timezone=data.getInt(8);
+    			lms.add(new LocationModel(id, name, desc, phone, head, city, country, timezone));
 
 
     		}
@@ -40,10 +44,11 @@ public class LocationDAO {
     		System.out.println("Error while viewing");
     		e.printStackTrace();
     	}
-    	return true;
+    	return lms;
     }
-    public boolean viewLocationById(int id) throws SQLException
+    public LocationModel viewLocationById(int id) throws SQLException
     {
+    	LocationModel loc=null;
     	try
     	{
     		String selSt="Select * FROM Location WHERE l_id=?";
@@ -56,27 +61,28 @@ public class LocationDAO {
     		while(data.next())
     		{
     			
-    			System.out.println(data.getInt(1));
-    			System.out.println(data.getString(2));
-    			System.out.println(data.getString(3));
-    			System.out.println(data.getString(4));
-    			System.out.println(data.getString(5));
-    			System.out.println(data.getString(6));
-    			System.out.println(data.getString(7));
-    			System.out.println(data.getInt(8));
-
-
+    			int uid=data.getInt(1);
+    			String name=data.getString(2);
+    			String desc=data.getString(3);
+    			String phone=data.getString(4);
+    			String head=data.getString(5);
+    			String city=data.getString(6);
+    			String country=data.getString(7);
+    			int timezone=data.getInt(8);
+    			loc=new LocationModel(uid, name, desc, phone, head, city, country, timezone);
+    			
     		}
     	}
     	catch(Exception e)
     	{
     		System.out.println("Error while viewing");
     	}
-    	return true;
+    	return loc;
     }
 
-    public boolean viewLocationByName(String name) throws SQLException
+    public LocationModel viewLocationByName(String name) throws SQLException
     {
+    	LocationModel loc=null;
     	try
     	{
     		String selSt="Select * FROM Location WHERE l_name=?";
@@ -85,87 +91,97 @@ public class LocationDAO {
     		ResultSet data=stat.executeQuery(selSt);
     		ResultSetMetaData meta=data.getMetaData();
     		int colCount=meta.getColumnCount();
+    		
     		while(data.next())
     		{
-
-    			System.out.println(data.getInt(1));
-    			System.out.println(data.getString(2));
-    			System.out.println(data.getString(3));
-    			System.out.println(data.getString(4));
-    			System.out.println(data.getString(5));
-    			System.out.println(data.getString(6));
-    			System.out.println(data.getString(7));
-    			System.out.println(data.getInt(8));
-
+    			
+    			int uid=data.getInt(1);
+    			String lName=data.getString(2);
+    			String desc=data.getString(3);
+    			String phone=data.getString(4);
+    			String head=data.getString(5);
+    			String city=data.getString(6);
+    			String country=data.getString(7);
+    			int timezone=data.getInt(8);
+    			loc=new LocationModel(uid, lName, desc, phone, head, city, country, timezone);
+    			
     		}
     	}
     	catch(Exception e)
     	{
     		System.out.println("Error while viewing");
     	}
-    	return true;
+    	return loc;
     }    
     
-    public boolean viewLocationByCity(String city, String country) throws SQLException
+    public ArrayList<LocationModel> viewLocationByCity(String city, String country) throws SQLException
     {
+    	ArrayList<LocationModel> lms=new ArrayList<>();
+ 
     	try
     	{
-    		String selSt="Select * FROM Location WHERE l_city=? AND l_country=?";
+    		String selSt="Select * FROM Location WHERE l_name=?";
     		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
     		stat.setString(1, city);
     		stat.setString(2, country);
     		ResultSet data=stat.executeQuery(selSt);
     		ResultSetMetaData meta=data.getMetaData();
     		int colCount=meta.getColumnCount();
+    		
     		while(data.next())
     		{
-
-    			System.out.println(data.getInt(1));
-    			System.out.println(data.getString(2));
-    			System.out.println(data.getString(3));
-    			System.out.println(data.getString(4));
-    			System.out.println(data.getString(5));
-    			System.out.println(data.getString(6));
-    			System.out.println(data.getString(7));
-    			System.out.println(data.getInt(8));
-
-
+    			
+    			int uid=data.getInt(1);
+    			String lName=data.getString(2);
+    			String desc=data.getString(3);
+    			String phone=data.getString(4);
+    			String head=data.getString(5);
+    			String lCity=data.getString(6);
+    			String lCountry=data.getString(7);
+    			int timezone=data.getInt(8);
+    			lms.add(new LocationModel(uid, lName, desc, phone, head, lCity, lCountry, timezone));
+    			
     		}
     	}
     	catch(Exception e)
     	{
     		System.out.println("Error while viewing");
     	}
-    	return true;
+    	return lms;
     }    
     
-    public boolean viewLocationByHead(String head) throws SQLException
+    public LocationModel viewLocationByHead(String head) throws SQLException
     {
+    	LocationModel loc=null;
     	try
     	{
-    		String selSt="Select * FROM Location WHERE l_head=?";
+    		String selSt="Select * FROM Location WHERE l_name=?";
     		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
     		stat.setString(1, head);
     		ResultSet data=stat.executeQuery(selSt);
     		ResultSetMetaData meta=data.getMetaData();
     		int colCount=meta.getColumnCount();
+    		
     		while(data.next())
     		{
-    			System.out.println(data.getInt(1));
-    			System.out.println(data.getString(2));
-    			System.out.println(data.getString(3));
-    			System.out.println(data.getString(4));
-    			System.out.println(data.getString(5));
-    			System.out.println(data.getString(6));
-    			System.out.println(data.getString(7));
-    			System.out.println(data.getInt(8));
+    			
+    			int uid=data.getInt(1);
+    			String lName=data.getString(2);
+    			String desc=data.getString(3);
+    			String phone=data.getString(4);
+    			String lHead=data.getString(5);
+    			String city=data.getString(6);
+    			String country=data.getString(7);
+    			int timezone=data.getInt(8);
+    			loc=new LocationModel(uid, lName, desc, phone, lHead, city, country, timezone);
+    			
     		}
     	}
     	catch(Exception e)
     	{
     		System.out.println("Error while viewing");
     	}
-    	return true;
+    	return loc;
     }    
     
 	public boolean insertLocation(int lId, String lName, String lDesc, String lPhone, String lHead, String lCity, String lCountry, int lTimeZone)
