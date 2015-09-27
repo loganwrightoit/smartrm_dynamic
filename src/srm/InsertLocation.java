@@ -46,7 +46,7 @@ public class InsertLocation extends HttpServlet {
 		LocationDAO d=new LocationDAO();
 		boolean works=d.insertLocation(locName, locDesc, locPhone, locHead, locCity, locCountry, locTimezone);
 		
-		RequestDispatcher rd=getServletContext().getRequestDispatcher("views/report.jsp");
+		RequestDispatcher rd=getServletContext().getRequestDispatcher("views/test.jsp");
 		
 		rd.include(req, res);
 		

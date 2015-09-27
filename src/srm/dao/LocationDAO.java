@@ -188,16 +188,24 @@ public class LocationDAO {
 	{
 		try
 		{
-			String insSt="INSERT INTO Location VALUES (l_id_seq.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement stat=DB.getDBConnection().prepareStatement(insSt);
+			String seqSt="SELECT l_id_seq.NEXTVAL FROM dual";
+			Connection con=DB.getDBConnection();
+			Statement st=con.createStatement();
+			ResultSet r=st.executeQuery(seqSt);
+			r.next();
+			int seqNum=r.getInt(1);
+			st.close();
 			
-			stat.setString(1, lName);
-			stat.setString(2, lDesc);
-			stat.setString(3, lPhone);
-			stat.setString(4, lHead);
-			stat.setString(5, lCity);
-			stat.setString(6, lCountry);
-			stat.setInt(7, lTimeZone);
+			String insSt="INSERT INTO Location VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement stat=DB.getDBConnection().prepareStatement(insSt);
+			stat.setInt(1, seqNum);
+			stat.setString(2, lName);
+			stat.setString(3, lDesc);
+			stat.setString(4, lPhone);
+			stat.setString(5, lHead);
+			stat.setString(6, lCity);
+			stat.setString(7, lCountry);
+			stat.setInt(8, lTimeZone);
 			int res=stat.executeUpdate();
 			if (res>0)
 				System.out.println("Data inserted");
