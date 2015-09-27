@@ -43,6 +43,7 @@ public class LocationDAO {
     	{
     		System.out.println("Error while viewing");
     		e.printStackTrace();
+    		throw new SQLException();
     	}
     	return lms;
     }
@@ -54,9 +55,7 @@ public class LocationDAO {
     		String selSt="Select * FROM Location WHERE l_id=?";
     		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
     		stat.setInt(1, id);
-    		ResultSet data=stat.executeQuery(selSt);
-    		ResultSetMetaData meta=data.getMetaData();
-    		int colCount=meta.getColumnCount();
+    		ResultSet data=stat.executeQuery();
     		
     		while(data.next())
     		{
@@ -76,6 +75,8 @@ public class LocationDAO {
     	catch(Exception e)
     	{
     		System.out.println("Error while viewing");
+    		e.printStackTrace();
+    		throw new SQLException();
     	}
     	return loc;
     }
@@ -88,7 +89,7 @@ public class LocationDAO {
     		String selSt="Select * FROM Location WHERE l_name=?";
     		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
     		stat.setString(1, name);
-    		ResultSet data=stat.executeQuery(selSt);
+    		ResultSet data=stat.executeQuery();
     		ResultSetMetaData meta=data.getMetaData();
     		int colCount=meta.getColumnCount();
     		
@@ -110,6 +111,7 @@ public class LocationDAO {
     	catch(Exception e)
     	{
     		System.out.println("Error while viewing");
+    		throw new SQLException();
     	}
     	return loc;
     }    
@@ -124,7 +126,7 @@ public class LocationDAO {
     		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
     		stat.setString(1, city);
     		stat.setString(2, country);
-    		ResultSet data=stat.executeQuery(selSt);
+    		ResultSet data=stat.executeQuery();
     		ResultSetMetaData meta=data.getMetaData();
     		int colCount=meta.getColumnCount();
     		
@@ -146,6 +148,7 @@ public class LocationDAO {
     	catch(Exception e)
     	{
     		System.out.println("Error while viewing");
+    		throw new SQLException();
     	}
     	return lms;
     }    
@@ -158,7 +161,7 @@ public class LocationDAO {
     		String selSt="Select * FROM Location WHERE l_name=?";
     		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
     		stat.setString(1, head);
-    		ResultSet data=stat.executeQuery(selSt);
+    		ResultSet data=stat.executeQuery();
     		ResultSetMetaData meta=data.getMetaData();
     		int colCount=meta.getColumnCount();
     		
@@ -180,11 +183,12 @@ public class LocationDAO {
     	catch(Exception e)
     	{
     		System.out.println("Error while viewing");
+    		throw new SQLException();
     	}
     	return loc;
     }    
     
-	public boolean insertLocation(String lName, String lDesc, String lPhone, String lHead, String lCity, String lCountry, int lTimeZone)
+	public boolean insertLocation(String lName, String lDesc, String lPhone, String lHead, String lCity, String lCountry, int lTimeZone) throws SQLException
 	{
 		try
 		{
@@ -213,10 +217,11 @@ public class LocationDAO {
 		catch (Exception e)
 		{
 			System.out.println("Error inserting");
+			throw new SQLException();
 		}
 		return true;
 	}
-	public boolean updateLocationHead(int lId, String lHead)
+	public boolean updateLocationHead(int lId, String lHead) throws SQLException
 	{
 		try
 		{
@@ -231,11 +236,13 @@ public class LocationDAO {
 		catch (Exception e)
 		{
 			System.out.println("Error while updating");
-			return false;
+
+			throw new SQLException();
+			
 		}
 		return true;
 	}
-	public boolean updateLocationPlace(int lId, String city, String country, int timeZone)
+	public boolean updateLocationPlace(int lId, String city, String country, int timeZone) throws SQLException
 	{
 		try
 		{
@@ -244,6 +251,7 @@ public class LocationDAO {
 			stat.setString(1, city);
 			stat.setString(2, country);
 			stat.setInt(3, timeZone);
+			stat.setInt(4, lId);
 			int res=stat.executeUpdate();
 			if (res>0)
 			{
@@ -253,11 +261,13 @@ public class LocationDAO {
 		catch (Exception e)
 		{
 			System.out.println("Error while updating");
-			return false;
+			e.printStackTrace();
+
+			throw new SQLException();
 		}
 		return true;
 	}
-	public boolean updateLocationPhone(int lId, String lPhone)
+	public boolean updateLocationPhone(int lId, String lPhone) throws SQLException
 	{
 		try
 		{
@@ -274,12 +284,13 @@ public class LocationDAO {
 		catch (Exception e)
 		{
 			System.out.println("Error while updating");
-			return false;
+
+			throw new SQLException();
 		}
 		return true;
 	}
 	
-	public boolean updateLocationDetails(int lId, String lPhone, String lHead, String city, String country, int timeZone)
+	public boolean updateLocationDetails(int lId, String lPhone, String lHead, String city, String country, int timeZone) throws SQLException
 	{
 		try
 		{
@@ -300,13 +311,14 @@ public class LocationDAO {
 		catch (Exception e)
 		{
 			System.out.println("Error while updating");
-			return false;
+
+			throw new SQLException();
 		}
 		return true;
 	}
 	
 	
-	public boolean deleteLocation(int lId)
+	public boolean deleteLocation(int lId) throws SQLException
 	{
 		try
 		{
@@ -320,7 +332,9 @@ public class LocationDAO {
 		catch (Exception e)
 		{
 			System.out.println("Error while deleting");
-			return false;
+			e.printStackTrace();
+
+			throw new SQLException();
 		}
 		return true;
 	}

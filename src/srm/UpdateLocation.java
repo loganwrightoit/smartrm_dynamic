@@ -1,6 +1,7 @@
 package srm;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -46,22 +47,33 @@ public class UpdateLocation extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		HttpSession s=req.getSession(true);//true creates new session, even if it exists
-		//blank: if session exists, open it, and if it doesn't, create new one
-		int id=Integer.parseInt(req.getParameter("l_id"));
-		String locPhone=req.getParameter("l_phone");
-		String locHead=req.getParameter("l_head");
-		String locCity=req.getParameter("l_city");
-		String locCountry=req.getParameter("l_country");
-		int locTimezone=Integer.parseInt(req.getParameter("l_timezone"));
-		LocationDAO d=new LocationDAO();
-		boolean works=d.updateLocationDetails(id, locPhone, locHead, locCity, locCountry, locTimezone);
+		RequestDispatcher rd=null;
+		try
+		{
+			HttpSession s=req.getSession(true);//true creates new session, even if it exists
+			//blank: if session exists, open it, and if it doesn't, create new one
+			int id=Integer.parseInt(req.getParameter("l_id"));
+			String locPhone=req.getParameter("l_phone");
+			String locHead=req.getParameter("l_head");
+			String locCity=req.getParameter("l_city");
+			String locCountry=req.getParameter("l_country");
+			int locTimezone=Integer.parseInt(req.getParameter("l_timezone"));
+			LocationDAO d=new LocationDAO();
+			boolean works=d.updateLocationDetails(id, locPhone, locHead, locCity, locCountry, locTimezone);
 		
-		RequestDispatcher rd=getServletContext().getRequestDispatcher("/views/report.jsp");
+			rd=req.getRequestDispatcher("/views/testupdate.jsp");
+		}
+		catch (Exception e)
+		{
+			rd=req.getRequestDispatcher("/views/error.jsp");
+		}
+		finally
+		{
 		
-		rd.include(req, res);
+			rd.include(req, res);
 		
-		System.out.println("service");
+			System.out.println("service");
+		}
 	}
 
 }

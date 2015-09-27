@@ -75,7 +75,7 @@ public class TestLocationDAO {
 	
 
 	
-	
+	@Test
 	public void testInsert()
 	{
 		LocationDAO d=new LocationDAO();

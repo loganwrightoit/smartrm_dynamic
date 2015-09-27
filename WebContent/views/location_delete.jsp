@@ -21,7 +21,7 @@
         <tr>
             <td>Select Location</td>
             <td>
-                <select name="l_timezone">
+                <select name="l_name">
                     <option value="A">Location A</option>
                     <option value="B">Location B</option>
                     <option value="C">Location C</option>

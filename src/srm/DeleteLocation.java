@@ -1,6 +1,7 @@
 package srm;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -45,18 +46,29 @@ public class DeleteLocation extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		RequestDispatcher rd=null;
+		try{
 		HttpSession s=req.getSession(true);//true creates new session, even if it exists
 		//blank: if session exists, open it, and if it doesn't, create new one
 		int id=Integer.parseInt(req.getParameter("l_id"));
+		String name=req.getParameter("l_name");
 		LocationDAO d=new LocationDAO();
 		boolean works=d.deleteLocation(id);
+		rd=req.getRequestDispatcher("/views/testdelete.jsp");
+		}
+		catch (SQLException e)
+		{
+			System.out.println("Redirecting");
+			rd=req.getRequestDispatcher("/views/error.jsp");
+		}
+		finally
+		{
 		
-		RequestDispatcher rd=getServletContext().getRequestDispatcher("/views/report.jsp");
+			rd.include(req, res);
 		
-		rd.include(req, res);
-		
-		System.out.println("service");
+			System.out.println("service");
+		}
 	}
 
 }
