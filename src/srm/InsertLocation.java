@@ -16,7 +16,7 @@ import srm.dao.LocationDAO;
 /**
  * Servlet implementation class LocationServlet
  */
-@WebServlet("/LocationServlet")
+@WebServlet("/InsertLocation")
 public class InsertLocation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
