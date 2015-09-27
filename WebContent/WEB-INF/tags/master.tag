@@ -38,7 +38,21 @@
 			</header>
 			
 			<div class="content">
+			
+					<c:if test="${not empty error}">
+						<div class="floating-box round-corners">
+					    	<h4 class="failure">${error}</h4>
+					    </div>
+					</c:if>
+					
+					<c:if test="${not empty message}">
+						<div class="floating-box round-corners">
+					    	<h4 class="failure">${message}</h4>
+					    </div>
+					</c:if>
+			
 				<jsp:doBody/>
+				
 			</div>
 			 
 			<footer class="dark-border round-corners">
