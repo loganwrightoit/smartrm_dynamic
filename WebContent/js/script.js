@@ -132,7 +132,6 @@ $(document).ready(function(){
          
          $(document).on('click','#deletelocation',function(event)
          {
-<<<<<<< HEAD
             $(".content").load("/WEB-INF/views/location_delete.jsp");
          })
 =======
@@ -140,7 +139,6 @@ $(document).ready(function(){
          });
          
          
->>>>>>> 398448d72a0b1984053debc2abba6224090d1a61
 
 	
 });
