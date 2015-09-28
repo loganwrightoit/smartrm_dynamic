@@ -45,13 +45,13 @@ public class RegisteredResourceDAO {
 	    	}
 	    	return rms;
 	    }
-	    /*
-	    public LocationModel viewLocationById(int id) throws SQLException
+	    
+	    public ResourceModel viewLocationById(int id) throws SQLException
 	    {
-	    	LocationModel loc=null;
+	    	ResourceModel res=null;
 	    	try
 	    	{
-	    		String selSt="Select * FROM Location WHERE l_id=?";
+	    		String selSt="Select * FROM registeredresource WHERE l_id=?";
 	    		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
 	    		stat.setInt(1, id);
 	    		ResultSet data=stat.executeQuery();
@@ -59,15 +59,13 @@ public class RegisteredResourceDAO {
 	    		while(data.next())
 	    		{
 	    			
-	    			int uid=data.getInt(1);
+	    			int rrId=data.getInt(1);
 	    			String name=data.getString(2);
-	    			String desc=data.getString(3);
-	    			String phone=data.getString(4);
-	    			String head=data.getString(5);
-	    			String city=data.getString(6);
-	    			String country=data.getString(7);
-	    			double timezone=data.getDouble(8);
-	    			loc=new LocationModel(uid, name, desc, phone, head, city, country, timezone);
+	    			int lId=data.getInt(3);
+	    			int rId=data.getInt(4);
+	    			String specFeatures=data.getString(5);
+	    			int cap=data.getInt(6);
+	    			res=new ResourceModel(rrId, name, lId, rId, specFeatures, cap);
 	    			
 	    		}
 	    	}
@@ -77,9 +75,9 @@ public class RegisteredResourceDAO {
 	    		e.printStackTrace();
 	    		throw new SQLException();
 	    	}
-	    	return loc;
+	    	return res;
 	    }
-
+	    /*
 	    public LocationModel viewLocationByName(String name) throws SQLException
 	    {
 	    	LocationModel loc=null;
