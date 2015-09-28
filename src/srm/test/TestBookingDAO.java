@@ -26,7 +26,6 @@ public class TestBookingDAO {
 	public void testShowAll() throws SQLException{
 		BookingDAO b=new BookingDAO();
 		assertFalse(b.showAll()==null);
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -34,7 +33,6 @@ public class TestBookingDAO {
 		BookingDAO b=new BookingDAO();
 		BookingModel l=b.viewBooking();
 		assertFalse(l==null);
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -42,14 +40,12 @@ public class TestBookingDAO {
 		BookingDAO b=new BookingDAO();
 		boolean works=b.bookMeetingRoom(1, 1, 1, 1, "8:00 PM", "9:00 PM", "nothing", "no real reason");
 		assertEquals(works, true);
-		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testUnbookMeetingRoom() throws SQLException {
 		BookingDAO b=new BookingDAO();
 		assertEquals(b.unbookMeetingRoom(1), true);
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -63,7 +59,6 @@ public class TestBookingDAO {
 	public void testUnbookConferenceHall() throws SQLException {
 		BookingDAO b=new BookingDAO();
 		assertEquals(b.unbookConferenceHall(1), true);
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -77,7 +72,6 @@ public class TestBookingDAO {
 	public void testUnbookEmployeeSeatingCubible() throws SQLException {
 		BookingDAO b=new BookingDAO();
 		assertEquals(b.unbookEmployeeSeatingCubible(1), true);
-		fail("Not yet implemented");
 	}
 
 }
