@@ -27,6 +27,7 @@ public class Booking extends HttpServlet {
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//added
 		HttpSession session = request.getSession(true);
 		Object obj = session.getAttribute("logged_in");
 		if(obj != null && !Boolean.parseBoolean(obj.toString()) || obj == null)
@@ -59,8 +60,9 @@ public class Booking extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("POSTING....3");
-		String loc = request.getParameter("location");
-		String res = request.getParameter("resource");
+		String loc = request.getParameter("blocation");
+		String res = request.getParameter("bresource");
+		
 		PrintWriter pw = response.getWriter();			
 		
 		if(loc.equals("Memphis Technology") && res.equals("mr"))
