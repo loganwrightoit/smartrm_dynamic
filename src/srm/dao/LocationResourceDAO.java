@@ -38,6 +38,7 @@ public class LocationResourceDAO {
     		if (!rset.isBeforeFirst()) {
     			return null;
     		} else {
+    			rset.next();
     			return new LocationResource(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4));
     		}
 

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import srm.model.RegisteredResource;
 import srm.model.ResourceModel;
 public class RegisteredResourceDAO {
 
@@ -47,14 +48,15 @@ public class RegisteredResourceDAO {
 	    	return rms;
 	    }
 	    
-	    public ResourceModel viewLocationById(int id) throws SQLException
+	    public ArrayList<RegisteredResource> viewResourceByLocationId(int l_id) throws SQLException
 	    {
-	    	ResourceModel res=null;
+	    	ArrayList<RegisteredResource> list = new ArrayList<RegisteredResource>();
+	    	
 	    	try
 	    	{
 	    		String selSt="Select * FROM registeredresource WHERE l_id=?";
 	    		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
-	    		stat.setInt(1, id);
+	    		stat.setInt(1, l_id);
 	    		ResultSet data=stat.executeQuery();
 	    		
 	    		while(data.next())
@@ -66,7 +68,7 @@ public class RegisteredResourceDAO {
 	    			int rId=data.getInt(4);
 	    			String specFeatures=data.getString(5);
 	    			int cap=data.getInt(6);
-	    			res=new ResourceModel(rrId, name, lId, rId, specFeatures, cap);
+	    			list.add(new RegisteredResource(rrId, name, lId, rId, specFeatures, cap));
 	    			
 	    		}
 	    	}
@@ -76,7 +78,8 @@ public class RegisteredResourceDAO {
 	    		e.printStackTrace();
 	    		throw new SQLException();
 	    	}
-	    	return res;
+	    	
+	    	return list;
 	    }
 	    /*
 	    public LocationModel viewLocationByName(String name) throws SQLException
