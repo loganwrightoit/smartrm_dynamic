@@ -40,17 +40,20 @@ public class ViewLocationById extends HttpServlet {
 	/**
 	 * @see Servlet#destroy()
 	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/location_viewbyid.jsp");
+		rd.include(req, res);
 	}
-
+	
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException 
+	{
 		HttpSession s=req.getSession(true);//true creates new session, even if it exists
 		//blank: if session exists, open it, and if it doesn't, create new one
-		int id=Integer.parseInt(req.getParameter("id"));
+		int id=Integer.parseInt(req.getParameter("l_id"));
+		
 		try
 		{
 			LocationDAO d=new LocationDAO();
@@ -58,12 +61,12 @@ public class ViewLocationById extends HttpServlet {
 		}
 		catch (SQLException sq)
 		{
+			req.setAttribute("error", "something went wrong");
+			RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/location.jsp");
 			System.out.println("Error viewing");
 		}
+		res.sendRedirect(req.getContextPath()+"/LocationSummary");
 		
-		RequestDispatcher rd=getServletContext().getRequestDispatcher("views/report.jsp");
-		
-		rd.include(req, res);
 		
 		System.out.println("service");
 	}

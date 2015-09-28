@@ -18,16 +18,17 @@ import srm.dao.LocationDAO;
  * Servlet implementation class DeleteLocation
  */
 @WebServlet("/DeleteLocation")
-public class DeleteLocation extends HttpServlet {
+public class DeleteLocation extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteLocation() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public DeleteLocation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -46,31 +47,32 @@ public class DeleteLocation extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	
+
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
 	{
-		
+
 		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/location_delete.jsp");
 		rd.include(req, res);
 	}
-	
+
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		RequestDispatcher rd=null;
-		try{
-		HttpSession s=req.getSession(true);//true creates new session, even if it exists
-		//blank: if session exists, open it, and if it doesn't, create new one
-		int id=Integer.parseInt(req.getParameter("l_id"));
-		String name=req.getParameter("l_name");
-		LocationDAO d=new LocationDAO();
-		boolean works=d.deleteLocation(id);
-		res.sendRedirect(req.getContextPath()+"/LocationSummary");
-	}
-	catch (SQLException e)
-	{
-		req.setAttribute("error", "Something went wrong");
-		rd=req.getRequestDispatcher("/WEB-INF/views/location_delete.jsp");
-		rd.include(req, res);
-	}
+		try
+		{
+			HttpSession s=req.getSession(true);//true creates new session, even if it exists
+			//blank: if session exists, open it, and if it doesn't, create new one
+			int id=Integer.parseInt(req.getParameter("l_id"));
+			String name=req.getParameter("l_name");
+			LocationDAO d=new LocationDAO();
+			boolean works=d.deleteLocation(id);
+			res.sendRedirect(req.getContextPath()+"/LocationSummary");
+		}
+		catch (SQLException e)
+		{
+			req.setAttribute("error", "Something went wrong");
+			rd=req.getRequestDispatcher("/WEB-INF/views/location_delete.jsp");
+			rd.include(req, res);
+		}
 	}
 
 }
