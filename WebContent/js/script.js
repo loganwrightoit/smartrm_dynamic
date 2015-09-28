@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+	/*
     // this handles the default page loaded at start
     $(".content").load("views/welcome.jsp");
     
@@ -140,5 +140,5 @@ $(document).ready(function(){
          
          
 
-	
+	*/
 });
