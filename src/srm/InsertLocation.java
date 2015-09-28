@@ -52,7 +52,7 @@ public class InsertLocation extends HttpServlet {
 			String locHead=req.getParameter("l_head");
 			String locCity=req.getParameter("l_city");
 			String locCountry=req.getParameter("l_country");
-			int locTimezone=Integer.parseInt(req.getParameter("l_timezone"));
+			double locTimezone=Double.parseDouble(req.getParameter("l_timezone"));
 			LocationDAO d=new LocationDAO();
 			boolean works=d.insertLocation(locName, locDesc, locPhone, locHead, locCity, locCountry, locTimezone);
 			res.sendRedirect(req.getContextPath()+"/LocationSummary");

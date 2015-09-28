@@ -38,9 +38,10 @@ public class TestBookingDAO {
 	}
 
 	@Test
-	public void testBookMeetingRoom() {
+	public void testBookMeetingRoom() throws SQLException {
 		BookingDAO b=new BookingDAO();
-	
+		boolean works=b.bookMeetingRoom(1, 1, 1, 1, "8:00 PM", "9:00 PM", "nothing", "no real reason");
+		assertEquals(works, true);
 		fail("Not yet implemented");
 	}
 
@@ -52,9 +53,10 @@ public class TestBookingDAO {
 	}
 
 	@Test
-	public void testBookConferenceHall() {
+	public void testBookConferenceHall() throws SQLException {
 		BookingDAO b=new BookingDAO();
-		fail("Not yet implemented");
+		boolean works=b.bookConferenceHall(2, 1, 1, 1, "8:00 PM", "9:00 PM", "nothing", "no real reason");
+		assertEquals(works, true);
 	}
 
 	@Test
