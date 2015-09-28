@@ -7,9 +7,13 @@
 		 
 		<h3>Add a New Resource for Location ${l_name}</h3>
 	
-		<form action="InsertResource" method="post">
+		<form method="post">
 		
 			<table>
+				<tr>
+					<td>Resource Name</td>
+					<td><input name="name" type="text" placeholder="Enter Name"/></td>
+				</tr>
 				<tr>
 					<td>Resource Type</td>
 					<td>

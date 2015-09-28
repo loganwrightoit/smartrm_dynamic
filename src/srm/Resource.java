@@ -41,12 +41,12 @@ public class Resource extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String task = request.getParameter("task").toString();
-		int id = Integer.parseInt(request.getParameter("l_id"));
+		int l_id = Integer.parseInt(request.getParameter("l_id"));
 		
 		// Save location ID in session for later use
 		HttpSession session = request.getSession();
-		session.setAttribute("l_id", id);
-		
+		session.setAttribute("l_id", l_id);
+
 		if ("add_resource".equals(task)) {
 			response.sendRedirect(request.getContextPath() + "/InsertResource");
 			return;

@@ -28,13 +28,13 @@ public class InsertResource extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		int id = (int) session.getAttribute("l_id");
-		
+		int l_id = (int) session.getAttribute("l_id");
+
 		// Add name for displaying in JSP
 		LocationDAO dao = new LocationDAO();
 		LocationModel lm = null;
 		try {
-			lm = dao.viewLocationById(id);
+			lm = dao.viewLocationById(l_id);
 			request.setAttribute("l_name", lm.getName());
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,6 +62,13 @@ public class InsertResource extends HttpServlet {
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
 		String special_features = request.getParameter("special_features");
 		try {
+			
+			System.out.println("name: " + name);
+			System.out.println("l_id: " + l_id);
+			System.out.println("r_id: " + lr.getR_id());
+			System.out.println("special_features: " + special_features);
+			System.out.println("capacity: " + capacity);
+			
 			dao.insertRegisteredResource(name, l_id, lr.getR_id(), special_features, capacity);
 			request.setAttribute("message", "Resource Successfully Added");
 			response.sendRedirect(request.getContextPath() + "/ResourceSummary");
