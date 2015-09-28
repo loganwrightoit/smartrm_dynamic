@@ -4,7 +4,7 @@
 
 <t:master>
 	<jsp:body>
-
+		<form method="post">
 		<table>
 		
 		<tr><td><h1 class="title">Select a location</h1><td><tr>
@@ -40,6 +40,6 @@
 		</div>
 		</tr>
 		</table>
-
+		</form>
 	</jsp:body>
 </t:master>

@@ -63,18 +63,66 @@ public class Booking extends HttpServlet {
 		String loc = request.getParameter("blocation");
 		String res = request.getParameter("bresource");
 		
+		String mode1 = request.getParameter("nb");
+		String mode2 = request.getParameter("db");
+		
 		PrintWriter pw = response.getWriter();			
 		
-		if(loc.equals("Memphis Technology") && res.equals("mr"))
+		if(!loc.equals("Select a Location") && res.equals("mr"))
 		{
 
 			request.setAttribute("location", loc);
-			request.getRequestDispatcher("views/mr_booking_add.jsp").include(request, response);
+			if(mode1!=null)
+			{
+				request.getRequestDispatcher("WEB-INF/views/mr_booking_add.jsp").include(request, response);
+			}
+			else if(mode2!=null)
+			{
+				request.getRequestDispatcher("WEB-INF/views/mr_booking_remove.jsp").include(request, response);
+			}
 			
 			
 			// call the next page
 			//response.sendRedirect("http://msn.com");
 		}
+		if(!loc.equals("Select a Location") && res.equals("ch"))
+		{
+
+			request.setAttribute("location", loc);
+			if(mode1!=null)
+			{
+				request.getRequestDispatcher("WEB-INF/views/ch_booking_add.jsp").include(request, response);
+			}
+			else if(mode2!=null)
+			{
+				request.getRequestDispatcher("WEB-INF/views/ch_booking_remove.jsp").include(request, response);
+			}
+			
+			
+			// call the next page
+			//response.sendRedirect("http://msn.com");
+		}
+		
+		if(!loc.equals("Select a Location") && res.equals("esc"))
+		{
+
+			request.setAttribute("location", loc);
+			if(mode1!=null)
+			{
+				request.getRequestDispatcher("WEB-INF/views/esc_booking_add.jsp").include(request, response);
+			}
+			else if(mode2!=null)
+			{
+				request.getRequestDispatcher("WEB-INF/views/esc_booking_remove.jsp").include(request, response);
+			}
+			
+			
+			// call the next page
+			//response.sendRedirect("http://msn.com");
+		}
+		
+		
+		
 		else
 		{
 			pw.print("false");
