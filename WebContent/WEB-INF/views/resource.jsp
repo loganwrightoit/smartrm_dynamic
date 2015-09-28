@@ -5,44 +5,26 @@
 <t:master>
 	<jsp:body>
 
-		<p>
-		<center>
-		<form>
-		<table>
-			
-			<tr><td><h1 class="title">Select a location</h1></td></tr>
-			<tr><td>
-			<select id="location">
+		<form method="post">
+
+			<h4>Select a location</h4>
+			<select name="l_id">
 				<option>Select a location</option>
-				<option value="a">Location A</option>
-				<option value="b">Location B</option>
-				<option value="c">Location C</option>
+				<c:forEach items="${locations}" var="item">
+					<option value="${item.id}">${item.name}</option>
+				</c:forEach>
 			</select>
-			</td></tr>
 			
-			<tr><td><h1 class="title">Select a resource</h1></td></tr>
-			<tr><td>
-			<select id="rresource">
-				<option>Select a resource</option>
-				<option value="mr">Meeting Room</option>
-				<option value="ch">Conference Hall</option>
-				<option value="esc">Employee Cubicle</option>
+			<select name="task">
+				<option>Select a task</option>
+				<option value="add_resource">Add Resource</option>
+				<option value="update_resource">Update Resource</option>
+				<option value="delete_resource">Delete Resource</option>
 			</select>
-			</td></tr>
-			<tr>
-			<td colspan="3">
-			<div class="nav">
-		
-			<br>
-			<button type="button" class="btn btn-success" id="newresource">Add Resource</button>&nbsp;
-			<button type="button" class="btn btn-success" id="updateresource">Update Resource</button>&nbsp;
-			<button type="button" class="btn btn-success" id="deleteresource">Delete Resource</button>&nbsp;
-			</div>
-			</td>
-			</tr>
-		</table>
+
+			<input type="submit" value="Continue" />
+
 		</form>
-		</center>	
 	
 	</jsp:body>
 </t:master>

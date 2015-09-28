@@ -33,7 +33,7 @@ public class LocationDAO {
     			String head=data.getString(5);
     			String city=data.getString(6);
     			String country=data.getString(7);
-    			int timezone=data.getInt(8);
+    			double timezone=data.getDouble(8);
     			lms.add(new LocationModel(id, name, desc, phone, head, city, country, timezone));
 
 
@@ -67,7 +67,7 @@ public class LocationDAO {
     			String head=data.getString(5);
     			String city=data.getString(6);
     			String country=data.getString(7);
-    			int timezone=data.getInt(8);
+    			double timezone=data.getDouble(8);
     			loc=new LocationModel(uid, name, desc, phone, head, city, country, timezone);
     			
     		}
@@ -103,7 +103,7 @@ public class LocationDAO {
     			String head=data.getString(5);
     			String city=data.getString(6);
     			String country=data.getString(7);
-    			int timezone=data.getInt(8);
+    			double timezone=data.getDouble(8);
     			loc=new LocationModel(uid, lName, desc, phone, head, city, country, timezone);
     			
     		}
@@ -140,7 +140,7 @@ public class LocationDAO {
     			String head=data.getString(5);
     			String lCity=data.getString(6);
     			String lCountry=data.getString(7);
-    			int timezone=data.getInt(8);
+    			double timezone=data.getDouble(8);
     			lms.add(new LocationModel(uid, lName, desc, phone, head, lCity, lCountry, timezone));
     			
     		}
@@ -175,7 +175,7 @@ public class LocationDAO {
     			String lHead=data.getString(5);
     			String city=data.getString(6);
     			String country=data.getString(7);
-    			int timezone=data.getInt(8);
+    			double timezone=data.getDouble(8);
     			loc=new LocationModel(uid, lName, desc, phone, lHead, city, country, timezone);
     			
     		}
@@ -188,7 +188,7 @@ public class LocationDAO {
     	return loc;
     }    
     
-	public boolean insertLocation(String lName, String lDesc, String lPhone, String lHead, String lCity, String lCountry, int lTimeZone) throws SQLException
+	public boolean insertLocation(String lName, String lDesc, String lPhone, String lHead, String lCity, String lCountry, double lTimeZone) throws SQLException
 	{
 		try
 		{
@@ -209,7 +209,7 @@ public class LocationDAO {
 			stat.setString(5, lHead);
 			stat.setString(6, lCity);
 			stat.setString(7, lCountry);
-			stat.setInt(8, lTimeZone);
+			stat.setDouble(8, lTimeZone);
 			int res=stat.executeUpdate();
 			if (res>0)
 				System.out.println("Data inserted");
@@ -242,7 +242,7 @@ public class LocationDAO {
 		}
 		return true;
 	}
-	public boolean updateLocationPlace(int lId, String city, String country, int timeZone) throws SQLException
+	public boolean updateLocationPlace(int lId, String city, String country, double timeZone) throws SQLException
 	{
 		try
 		{
@@ -250,7 +250,7 @@ public class LocationDAO {
 			PreparedStatement stat=DB.getDBConnection().prepareStatement(updateSt);
 			stat.setString(1, city);
 			stat.setString(2, country);
-			stat.setInt(3, timeZone);
+			stat.setDouble(3, timeZone);
 			stat.setInt(4, lId);
 			int res=stat.executeUpdate();
 			if (res>0)
@@ -290,7 +290,7 @@ public class LocationDAO {
 		return true;
 	}
 	
-	public boolean updateLocationDetails(int lId, String lPhone, String lHead, String city, String country, int timeZone) throws SQLException
+	public boolean updateLocationDetails(int lId, String lPhone, String lHead, String city, String country, double timeZone) throws SQLException
 	{
 		try
 		{
@@ -300,7 +300,7 @@ public class LocationDAO {
 			stat.setString(2, lHead);
 			stat.setString(3, city);
 			stat.setString(4, country);
-			stat.setInt(5, timeZone);
+			stat.setDouble(5, timeZone);
 			stat.setInt(6, lId);
 			int res=stat.executeUpdate();
 			if (res>0)

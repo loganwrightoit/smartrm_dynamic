@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<t:master>
+	<jsp:body>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -11,7 +15,7 @@
 <h2 class="subtitle">Registration Service</h2>
 <p>Here you can delete a location.</p>
 
-<form action="DeleteLocation">
+<form action="DeleteLocation" method="post">
 
     <table>
     	<tr>
@@ -36,3 +40,5 @@
 </form>
 </body>
 </html>
+</jsp:body>
+</t:master>

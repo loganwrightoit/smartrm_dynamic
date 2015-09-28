@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<t:master>
+<jsp:body>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +17,7 @@
 <h2 class="subtitle">Registration Service</h2>
 <p>Here you can modify a location.</p>
 
-<form action="UpdateLocation">
+<form action="UpdateLocation" method="post">
 
     <table>
     	<tr>
@@ -139,3 +145,5 @@
 </form>
 </body>
 </html>
+</jsp:body>
+</t:master>

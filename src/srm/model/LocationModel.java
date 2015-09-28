@@ -8,8 +8,8 @@ public class LocationModel {
     private String head;
     private String city;
     private String country;
-    private int timezone;
-    public LocationModel(int id, String name, String desc, String phone, String head, String city, String country, int tz)
+    private double timezone;
+    public LocationModel(int id, String name, String desc, String phone, String head, String city, String country, double tz)
     {
         this.id=id;
         this.name=name;
@@ -76,11 +76,11 @@ public class LocationModel {
         this.country = country;
     }
 
-    public int getTimezone() {
+    public double getTimezone() {
         return timezone;
     }
 
-    public void setTimezone(int timezone) {
+    public void setTimezone(double timezone) {
         this.timezone = timezone;
     }
     

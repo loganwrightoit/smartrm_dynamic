@@ -32,7 +32,14 @@ public class InsertLocation extends HttpServlet {
 		System.out.println("destroy");
 	}
 	
-	public void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+	{
+		
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/location_add.jsp");
+		rd.include(req, res);
+	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
 	{
 		RequestDispatcher rd=null;
 		try
@@ -45,24 +52,18 @@ public class InsertLocation extends HttpServlet {
 			String locHead=req.getParameter("l_head");
 			String locCity=req.getParameter("l_city");
 			String locCountry=req.getParameter("l_country");
-			int locTimezone=Integer.parseInt(req.getParameter("l_timezone"));
+			double locTimezone=Double.parseDouble(req.getParameter("l_timezone"));
 			LocationDAO d=new LocationDAO();
 			boolean works=d.insertLocation(locName, locDesc, locPhone, locHead, locCity, locCountry, locTimezone);
-			rd=req.getRequestDispatcher("/views/testinsert.jsp");
+			res.sendRedirect(req.getContextPath()+"/LocationSummary");
 		}
 		catch (SQLException e)
 		{
-			rd=req.getRequestDispatcher("/views/error.jsp");
-		}
-		finally
-		{
-		
+			req.setAttribute("error", "Something went wrong");
+			rd=req.getRequestDispatcher("/WEB-INF/views/location_add.jsp");
 			rd.include(req, res);
-		
-			System.out.println("service");
 		}
-		
+
 	}
-	
 
 }

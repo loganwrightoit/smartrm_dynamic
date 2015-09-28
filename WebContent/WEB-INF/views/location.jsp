@@ -18,9 +18,11 @@
 		<br>
 		
 		<div class="nav">
-			<button type="button" class="btn btn-success" id="newlocation">Add Location</button>&nbsp;
-			<button type="button" class="btn btn-success" id="updatelocation">Update Location</button>&nbsp;
-			<button type="button" class="btn btn-success" id="deletelocation">Delete Location</button>&nbsp;
+			<a class="btn" href="InsertLocation">Add Location</a>&nbsp;
+			<a class="btn" href="UpdateLocation">Update Location</a>&nbsp;
+			<a class="btn" href="DeleteLocation">Delete Location</a>&nbsp;
+			<a class="btn" href="LocationSummary">View Locations</a>&nbsp;
+			
 		</div>
 
 	</jsp:body>

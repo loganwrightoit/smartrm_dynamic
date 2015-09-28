@@ -122,16 +122,19 @@ $(document).ready(function(){
          
          $(document).on('click','#newlocation',function(event)
          {
-            $(".content").load("views/location_add.jsp");         
+            $(".content").load("/WEB-INF/views/location_add.jsp");         
          })
 
          $(document).on('click','#updatelocation',function(event)
          {
-            $(".content").load("views/location_update.jsp");
+            $(".content").load("/WEB-INF/views/location_update.jsp");
          })
          
          $(document).on('click','#deletelocation',function(event)
          {
+            $(".content").load("/WEB-INF/views/location_delete.jsp");
+         })
+=======
             $(".content").load("views/location_delete.jsp");
          });
          

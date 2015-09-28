@@ -1,12 +1,17 @@
 package srm;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import srm.dao.LocationDAO;
+import srm.model.LocationModel;
 
 @WebServlet("/Resource")
 public class Resource extends HttpServlet {
@@ -16,6 +21,16 @@ public class Resource extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		// Populate locations dropdown
+		LocationDAO dao = new LocationDAO();
+		try {
+			ArrayList<LocationModel> list = dao.viewLocation();
+			request.setAttribute("locations", list);
+		} catch (SQLException e) {
+			request.setAttribute("error", "Unable to connect to database");
+			e.printStackTrace();
+		}
+		
 		request.getRequestDispatcher("/WEB-INF/views/resource.jsp").forward(request, response);
 	}
 
@@ -24,7 +39,22 @@ public class Resource extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		// TODO Auto-generated method stub
+		String task = request.getParameter("task").toString();
+		int id = Integer.parseInt(request.getParameter("l_id"));
+		
+		if ("add_resource".equals(task)) {
+			getServletContext().getRequestDispatcher("/InsertResource?l_id=" + id).forward(request, response);
+			return;
+		} else if ("update_resource".equals(task)) {
+			getServletContext().getRequestDispatcher("/UpdateResource?l_id=" + id).forward(request, response);
+			return;
+		} else if ("delete_resource".equals(task)) {
+			getServletContext().getRequestDispatcher("/DeleteResource?l_id=" + id).forward(request, response);
+			return;
+		} else {
+			request.setAttribute("error", "A task must be selected");
+			doGet(request, response);
+		}
 	}
 
 }

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
+<t:master>
+	<jsp:body>
+	
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -11,7 +16,7 @@
 <h2 class="subtitle">Registration Service</h2>
 <p>Here you can register a new location.</p>
 
-<form action="InsertLocation">
+<form action="InsertLocation" method="Post">
 
     <table>
         <tr>
@@ -135,3 +140,5 @@
 </form>
 </body>
 </html>
+</jsp:body>
+</t:master>
