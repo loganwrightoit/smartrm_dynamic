@@ -4,31 +4,8 @@
 
 <t:master>
 	<jsp:body>
-	
-		<!-- 
-		CREATE TABLE locationresource
-		(
-			r_id number primary key,
-			r_name char(10) not null,
-			r_type varchar(10),
-			description varchar(1000)
-		);
-		
-		CREATE TABLE registeredresource
-		(
-			rr_id number primary key,
-			rr_name varchar(20) not null,
-			l_id number not null,
-			r_id number not null,
-			special_features varchar(1000),
-			capacity number,
-			constraint fklocid foreign key (l_id) references location(l_id),
-			constraint fkresid foreign key (r_id) references locationresource(r_id)
-		);
-		
-		 -->
 		 
-		<h3>Add a New Resource for location ${l_name}</h3>
+		<h3>Add a New Resource for Location ${l_name}</h3>
 	
 		<form action="InsertResource" method="post">
 		

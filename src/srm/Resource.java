@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import srm.dao.LocationDAO;
 import srm.model.LocationModel;
@@ -42,14 +43,18 @@ public class Resource extends HttpServlet {
 		String task = request.getParameter("task").toString();
 		int id = Integer.parseInt(request.getParameter("l_id"));
 		
+		// Save location ID in session for later use
+		HttpSession session = request.getSession();
+		session.setAttribute("l_id", id);
+		
 		if ("add_resource".equals(task)) {
-			getServletContext().getRequestDispatcher("/InsertResource?l_id=" + id).forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/InsertResource");
 			return;
 		} else if ("update_resource".equals(task)) {
-			getServletContext().getRequestDispatcher("/UpdateResource?l_id=" + id).forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/UpdateResource");
 			return;
 		} else if ("delete_resource".equals(task)) {
-			getServletContext().getRequestDispatcher("/DeleteResource?l_id=" + id).forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/DeleteResource");
 			return;
 		} else {
 			request.setAttribute("error", "A task must be selected");
