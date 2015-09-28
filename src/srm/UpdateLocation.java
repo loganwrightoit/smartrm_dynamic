@@ -61,11 +61,11 @@ public class UpdateLocation extends HttpServlet {
 			LocationDAO d=new LocationDAO();
 			boolean works=d.updateLocationDetails(id, locPhone, locHead, locCity, locCountry, locTimezone);
 		
-			rd=req.getRequestDispatcher("/views/testupdate.jsp");
+			rd=req.getRequestDispatcher("/WEB-INF/views/testupdate.jsp");
 		}
 		catch (Exception e)
 		{
-			rd=req.getRequestDispatcher("/views/error.jsp");
+			rd=req.getRequestDispatcher("/WEB-INF/views/error.jsp");
 		}
 		finally
 		{

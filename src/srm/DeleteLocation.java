@@ -55,12 +55,12 @@ public class DeleteLocation extends HttpServlet {
 		String name=req.getParameter("l_name");
 		LocationDAO d=new LocationDAO();
 		boolean works=d.deleteLocation(id);
-		rd=req.getRequestDispatcher("/views/testdelete.jsp");
+		rd=req.getRequestDispatcher("/WEB-INF/views/testdelete.jsp");
 		}
 		catch (SQLException e)
 		{
 			System.out.println("Redirecting");
-			rd=req.getRequestDispatcher("/views/error.jsp");
+			rd=req.getRequestDispatcher("/WEB-INF/views/error.jsp");
 		}
 		finally
 		{

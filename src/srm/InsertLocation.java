@@ -52,7 +52,7 @@ public class InsertLocation extends HttpServlet {
 		}
 		catch (SQLException e)
 		{
-			rd=req.getRequestDispatcher("/views/error.jsp");
+			rd=req.getRequestDispatcher("/WEB-INF/views/error.jsp");
 		}
 		finally
 		{
