@@ -67,9 +67,10 @@ public class TestBookingDAO {
 	}
 
 	@Test
-	public void testBookEmployeeSeatingCubicle() {
+	public void testBookEmployeeSeatingCubicle() throws SQLException {
 		BookingDAO b=new BookingDAO();
-		fail("Not yet implemented");
+		boolean works=b.bookEmployeeSeatingCubicle(3, 1, 1, 1, "8:00 PM", "9:00 PM", "nothing", "no real reason");
+		assertEquals(works, true);
 	}
 
 	@Test
