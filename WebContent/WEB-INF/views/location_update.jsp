@@ -17,7 +17,7 @@
 <h2 class="subtitle">Registration Service</h2>
 <p>Here you can modify a location.</p>
 
-<form action="UpdateLocation">
+<form action="UpdateLocation" method="post">
 
     <table>
     	<tr>

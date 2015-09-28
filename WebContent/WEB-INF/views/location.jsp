@@ -18,9 +18,10 @@
 		<br>
 		
 		<div class="nav">
-			<a class="btn" href="location_add.jsp">Add Location</a>&nbsp;
+			<a class="btn" href="InsertLocation">Add Location</a>&nbsp;
 			<a class="btn" href="UpdateLocation">Update Location</a>&nbsp;
 			<a class="btn" href="DeleteLocation">Delete Location</a>&nbsp;
+			<a class="btn" href="LocationSummary">View Locations</a>&nbsp;
 			
 		</div>
 

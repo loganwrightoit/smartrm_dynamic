@@ -15,7 +15,7 @@
 <h2 class="subtitle">Registration Service</h2>
 <p>Here you can delete a location.</p>
 
-<form action="DeleteLocation">
+<form action="DeleteLocation" method="post">
 
     <table>
     	<tr>

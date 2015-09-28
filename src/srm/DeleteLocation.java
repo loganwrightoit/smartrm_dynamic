@@ -46,7 +46,15 @@ public class DeleteLocation extends HttpServlet {
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+	{
+		
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/location_delete.jsp");
+		rd.include(req, res);
+	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		RequestDispatcher rd=null;
 		try{
 		HttpSession s=req.getSession(true);//true creates new session, even if it exists
@@ -55,20 +63,14 @@ public class DeleteLocation extends HttpServlet {
 		String name=req.getParameter("l_name");
 		LocationDAO d=new LocationDAO();
 		boolean works=d.deleteLocation(id);
-		rd=req.getRequestDispatcher("/WEB-INF/views/testdelete.jsp");
-		}
-		catch (SQLException e)
-		{
-			System.out.println("Redirecting");
-			rd=req.getRequestDispatcher("/WEB-INF/views/error.jsp");
-		}
-		finally
-		{
-		
-			rd.include(req, res);
-		
-			System.out.println("service");
-		}
+		res.sendRedirect(req.getContextPath()+"/LocationSummary");
+	}
+	catch (SQLException e)
+	{
+		req.setAttribute("error", "Something went wrong");
+		rd=req.getRequestDispatcher("/WEB-INF/views/location_delete.jsp");
+		rd.include(req, res);
+	}
 	}
 
 }

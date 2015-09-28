@@ -42,11 +42,19 @@ public class UpdateLocation extends HttpServlet {
 	public void destroy() {
 		// TODO Auto-generated method stub
 	}
+	
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+	{
+		
+		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/location_update.jsp");
+		rd.include(req, res);
+	}
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		RequestDispatcher rd=null;
 		try
 		{
@@ -61,19 +69,16 @@ public class UpdateLocation extends HttpServlet {
 			LocationDAO d=new LocationDAO();
 			boolean works=d.updateLocationDetails(id, locPhone, locHead, locCity, locCountry, locTimezone);
 		
-			rd=req.getRequestDispatcher("/WEB-INF/views/testupdate.jsp");
+			res.sendRedirect(req.getContextPath()+"/LocationSummary");
 		}
-		catch (Exception e)
-		{
-			rd=req.getRequestDispatcher("/WEB-INF/views/error.jsp");
-		}
-		finally
-		{
 		
-			rd.include(req, res);
-		
-			System.out.println("service");
-		}
+	
+	catch (SQLException e)
+	{
+		req.setAttribute("error", "Something went wrong");
+		rd=req.getRequestDispatcher("/WEB-INF/views/location_update.jsp");
+		rd.include(req, res);
+	}
 	}
 
 }

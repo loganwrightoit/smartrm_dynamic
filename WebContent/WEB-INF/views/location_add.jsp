@@ -16,7 +16,7 @@
 <h2 class="subtitle">Registration Service</h2>
 <p>Here you can register a new location.</p>
 
-<form action="InsertLocation">
+<form action="InsertLocation" method="Post">
 
     <table>
         <tr>
