@@ -9,18 +9,18 @@
 		
 		<tr><td><h1 class="title">Select a location</h1><td><tr>
 		<tr><td colspan="2">
-		<select id="location">
+		<select id="location" name="blocation">
 		        <option value="locationselect">Select a Location</option>
-			<option value="A">Location A</option>
-			<option value="B">Location B</option>
-			<option value="C">Location C</option>
+		        <c:forEach items="${locations}" var="d">
+		        	<option value="${d}">${d}</option>
+		        </c:forEach>
 		</select>
 		</td><tr>
 		
 		<tr><td><h1 class="title">Select a resource</h1></td></tr>
 		
 		<tr><td>
-		<select id="resource">
+		<select id="resource" name="bresource">
 		        <option value="resourceselect">Select a Resource</option>
 			<option value="mr">Meeting Rooms</option>
 			<option value="ch">Conference Hall</option>
@@ -33,9 +33,9 @@
 		
 		<td>
 		<br>
-		<button type="button" class="btn btn-success" id="newbooking">New Booking</button>
+		<input type="submit" class="btn btn-success" id="newbooking" name="nb" value="New Booking">
 		
-		<button type="button" class="btn btn-success" id="deletebooking">Delete Booking</button>
+		<input type="submit" class="btn btn-success" id="deletebooking" name="db" value="Delete Booking"/>
 		</td>
 		</div>
 		</tr>

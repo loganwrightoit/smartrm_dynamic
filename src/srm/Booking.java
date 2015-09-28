@@ -48,7 +48,7 @@ public class Booking extends HttpServlet {
 			    	lmname.add(tmp.getName());
 			    }
 				request.setAttribute("locations", lmname);
-				request.getRequestDispatcher("/views/booking.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/booking.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
