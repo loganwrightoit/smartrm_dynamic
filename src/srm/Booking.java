@@ -1,9 +1,11 @@
 package srm;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +31,7 @@ public class Booking extends HttpServlet {
 		Object obj = session.getAttribute("logged_in");
 		if(obj != null && !Boolean.parseBoolean(obj.toString()) || obj == null)
 		{
-			response.sendRedirect("/Logout");
+			response.sendRedirect("Logout");
 		}
 		else
 		{
@@ -46,7 +48,7 @@ public class Booking extends HttpServlet {
 			    	lmname.add(tmp.getName());
 			    }
 				request.setAttribute("locations", lmname);
-				request.getRequestDispatcher("/WEB-INF/views/booking.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/booking.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -56,7 +58,27 @@ public class Booking extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("POSTING....3");
+		String loc = request.getParameter("location");
+		String res = request.getParameter("resource");
+		PrintWriter pw = response.getWriter();			
+		
+		if(loc.equals("Memphis Technology") && res.equals("mr"))
+		{
+
+			request.setAttribute("location", loc);
+			request.getRequestDispatcher("views/mr_booking_add.jsp").include(request, response);
+			
+			
+			// call the next page
+			//response.sendRedirect("http://msn.com");
+		}
+		else
+		{
+			pw.print("false");
+		}
+		//System.out.println(temp);	
+		//response.sendRedirect("http://yahoo.com");
 	}
 
 }

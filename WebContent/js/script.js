@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	
     // this handles the default page loaded at start
-    //$(".content").load("views/welcome.jsp");
+    $(".content").load("views/welcome.jsp");
     
         // display home.html when home button clicked
 	$("#home").click(function(){
@@ -20,23 +20,31 @@ $(document).ready(function(){
 	});
         // display booking html when booking button clicked
 	$("#booking").click(function(){
-		$(".content").load("views/booking.jsp");
-		console.log("booking clicked");
+		$(".content").load("Booking",function()
+			{
+			// new bookings
+	         $("#form1").submit(function(event)
+	         {
+	        	$.ajax({
+	        	    type: $("#form1").attr("method"),
+	        	    url:  $("#form1").attr("action"),
+	        	    data: $("#form1").serialize(),
+	        	    success: function(data) {
+	        	    	if(data != "false")
+	        	    	{
+	        	    		$(".content").html(data);
+	        	    	}
+	        	    	else
+	        	    	{
+		        	    	alert("error");	
+	        	    	}
+	        	    }
+	        	  });
+	        	event.preventDefault();
+	         });
+			});
 	});
-        // changes the button color when hovered
-       /*
-	 $("header div").hover(function(){
-            $(this).css("background-color","pink")
-        },
-            function(){
-                 $(this).css("background-color","yellow")
-            })
 	
-        // handles the color when button is clicked
-         $(".home").click(function(){
-            $(this).toggleClass("togglebutton"); 
-         })
-	*/
 	$("#home").click(function()
 	{
 		$("#location,#resource,#booking").removeClass("active");
@@ -124,8 +132,15 @@ $(document).ready(function(){
          
          $(document).on('click','#deletelocation',function(event)
          {
+<<<<<<< HEAD
             $(".content").load("/WEB-INF/views/location_delete.jsp");
          })
+=======
+            $(".content").load("views/location_delete.jsp");
+         });
+         
+         
+>>>>>>> 398448d72a0b1984053debc2abba6224090d1a61
 
 	
 });
