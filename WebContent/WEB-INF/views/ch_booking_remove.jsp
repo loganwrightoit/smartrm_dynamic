@@ -10,14 +10,10 @@
 	<center>
 	<form method="post">
 		<table>
+			
 			<tr>
-				<td>Name:</td>
-				<td><input type="text" name="name" Required></td>
-			</tr>
-					
-			<tr>
-				<td>Room Number:</td>
-				<td><input type="number" min="1" name="roomnumber" Required></td>
+				<td>Booking ID:</td>
+				<td><input type="number" min="1" name="b_id" Required></td>
 			</tr>
 
 			<tr>

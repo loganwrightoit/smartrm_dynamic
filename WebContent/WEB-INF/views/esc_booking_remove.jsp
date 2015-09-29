@@ -11,10 +11,14 @@
 
 <form method="post">
     <table>
-        <tr>
-            <td>Cubicle Id</td>
-            <td colspan="2"><input type="text" placeholder="Enter cubicle Id" name="cubicleid" required/></td>
-        </tr>
+			<tr>
+				<td>Resource name:</td>
+				<td><input type="number" min="1" name="r_name" Required></td>
+			</tr>
+			<tr>
+				<td>Booking ID:</td>
+				<td><input type="number" min="1" name="b_id" Required></td>
+			</tr>
     </table>
     <p>Will show selectable bookings in a table here...</p>
     <input type="submit" value="Cancel Reservation"/>
