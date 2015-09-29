@@ -28,7 +28,7 @@ public class DeleteResource extends HttpServlet {
 		
 		Object obj = request.getParameter("rr_id");
 		if (obj != null) {
-			session.setAttribute("rr_id", Integer.parseInt(obj.toString()));
+			request.setAttribute("rr_id", Integer.parseInt(obj.toString()));
 			// Generate resource values for fields in JSP
 			RegisteredResourceDAO dao = new RegisteredResourceDAO();
 			RegisteredResource rr = dao.viewResource(Integer.parseInt(obj.toString()));
@@ -58,7 +58,6 @@ public class DeleteResource extends HttpServlet {
 		int rr_id = (int) session.getAttribute("rr_id");
 		RegisteredResourceDAO dao = new RegisteredResourceDAO();
 		try {
-			
 			dao.deleteRegisteredResource(rr_id);
 			request.setAttribute("message", "Resource deleted.");
 		} catch (SQLException e) {
