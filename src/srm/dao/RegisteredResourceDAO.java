@@ -8,11 +8,39 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import srm.model.LocationResource;
 import srm.model.RegisteredResource;
-public class RegisteredResourceDAO {
 
+public class RegisteredResourceDAO
+{
+
+	public RegisteredResource viewResource(int rr_id)
+	{
+		try
+		{
+			String updateSt="SELECT * FROM registeredresource WHERE rr_id = ?";
+			PreparedStatement pstat = DB.getDBConnection().prepareStatement(updateSt);
+			pstat.setInt(1, rr_id);
+			ResultSet rset = pstat.executeQuery();
+
+    		// Test for empty set
+    		if (!rset.isBeforeFirst()) {
+    			return null;
+    		} else {
+    			rset.next();
+    			return new RegisteredResource(rset.getInt(1), rset.getString(2), rset.getInt(3), rset.getInt(4), rset.getString(5), rset.getInt(6));
+    		}
+			
+		}
+		catch (Exception e)
+		{
+			System.out.println("Encountered error while calling for registered resource by id.");
+			e.printStackTrace();
+		}
 		
-
+		return null;
+	}
+	
 	    public ArrayList<RegisteredResource> viewLocation() throws SQLException
 	    {
 	    	ArrayList<RegisteredResource> rms=new ArrayList<>();

@@ -5,7 +5,7 @@
 <t:master>
 	<jsp:body>
 	
-		<h2 align="center">Resource Summary for ${l_name}</h2>
+		<h2 align="center">Resource Summary</h2>
 	
 		<div class="floating-box round-corners">
 			<table class="table table-striped">
