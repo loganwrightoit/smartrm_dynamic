@@ -11,43 +11,43 @@ import java.util.ArrayList;
 import srm.model.LocationResource;
 import srm.model.RegisteredResource;
 
-<<<<<<< HEAD
-		public RegisteredResource viewRegisteredResourceByName(String qname) throws SQLException
-		{
-			RegisteredResource rms = null;
-			try
-			{
-				String selSt="Select * FROM registeredresource where rr_name = ?";
-	    		PreparedStatement stat=DB.getDBConnection().prepareStatement("selSt");
-	    		stat.setString(1, qname);
-	    		ResultSet data=stat.executeQuery();
-	    		ResultSetMetaData meta=data.getMetaData();
-	    		int colCount=meta.getColumnCount();
-	    		while(data.next())
-	    		{
-	    			int id=data.getInt(1);
-	    			String name=data.getString(2);
-	    			int l_id=data.getInt(3);
-	    			int r_id=data.getInt(4);
-	    			String specPurpose=data.getString(5);
-	    			int cap=data.getInt(6);
-	    			
-	    			rms = new RegisteredResource(id,name,l_id,r_id,specPurpose,cap);
-	    		}
-			}
-
-	    	catch(Exception e)
-	    	{
-	    		System.out.println("Error while viewing");
-	    		e.printStackTrace();
-	    		throw new SQLException();
-	    	}
-	    	return rms;
-		}
-=======
 public class RegisteredResourceDAO
 {
 
+	
+	public RegisteredResource viewRegisteredResourceByName(String qname) throws SQLException
+	{
+		RegisteredResource rms = null;
+		try
+		{
+			String selSt="Select * FROM registeredresource where rr_name = ?";
+    		PreparedStatement stat=DB.getDBConnection().prepareStatement("selSt");
+    		stat.setString(1, qname);
+    		ResultSet data=stat.executeQuery();
+    		ResultSetMetaData meta=data.getMetaData();
+    		int colCount=meta.getColumnCount();
+    		while(data.next())
+    		{
+    			int id=data.getInt(1);
+    			String name=data.getString(2);
+    			int l_id=data.getInt(3);
+    			int r_id=data.getInt(4);
+    			String specPurpose=data.getString(5);
+    			int cap=data.getInt(6);
+    			
+    			rms = new RegisteredResource(id,name,l_id,r_id,specPurpose,cap);
+    		}
+		}
+
+    	catch(Exception e)
+    	{
+    		System.out.println("Error while viewing");
+    		e.printStackTrace();
+    		throw new SQLException();
+    	}
+    	return rms;
+	}
+	
 	public RegisteredResource viewResource(int rr_id)
 	{
 		try
@@ -56,7 +56,6 @@ public class RegisteredResourceDAO
 			PreparedStatement pstat = DB.getDBConnection().prepareStatement(updateSt);
 			pstat.setInt(1, rr_id);
 			ResultSet rset = pstat.executeQuery();
->>>>>>> 11f9a5361c57d96627773b1465f84adcaff41915
 
     		// Test for empty set
     		if (!rset.isBeforeFirst()) {
