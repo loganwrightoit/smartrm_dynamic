@@ -20,15 +20,15 @@
 		<form method="post">
 			<div class="form-group">
 				<label for="aName">Name</label>
-				<input type="text" class="form-control" id="aName" value="${rr_name}">
+				<input type="text" class="form-control" id="aName" name="rr_name" value="${rr_name}">
 			</div>
 			<div class="form-group">
 				<label for="aCapacity">Capacity</label>
-				<input type="number" class="form-control" id="aCapacity" value="${capacity}">
+				<input type="number" class="form-control" id="aCapacity" name="capacity" value="${capacity}">
 			</div>
 			<div class="form-group">
 				<label for="aSpecial">Special Features</label>
-				<textarea>${special_features}</textarea>
+				<textarea name="special_features">${special_features}</textarea>
 			</div>
 			<button type="submit" class="btn btn-default">Save</button>
 		</form>

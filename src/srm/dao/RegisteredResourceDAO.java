@@ -146,16 +146,16 @@ public class RegisteredResourceDAO
 			return true;
 		}
 		
-		public boolean updateResourceDetails(int rrId, String specFeatures, int cap) throws SQLException
+		public boolean updateResourceDetails(int rr_id, String special_features, int capacity) throws SQLException
 		{
 			try
 			{
-				String updateSt="UPDATE registeredresource SET specFeatures=?, cap=? WHERE l_id=?";
-				PreparedStatement stat=DB.getDBConnection().prepareStatement(updateSt);
-				stat.setString(1, specFeatures);
-				stat.setInt(2, cap);
-				int res=stat.executeUpdate();
-				if (res>0)
+				String updateSt="UPDATE registeredresource SET special_features = ?, capacity = ? WHERE rr_id = ?";
+				PreparedStatement pstat = DB.getDBConnection().prepareStatement(updateSt);
+				pstat.setString(1, special_features);
+				pstat.setInt(2, capacity);
+				int res = pstat.executeUpdate();
+				if (res > 0)
 				{
 					System.out.println("Data updated");
 				}

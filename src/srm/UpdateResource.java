@@ -22,8 +22,13 @@ public class UpdateResource extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		HttpSession session = request.getSession();
+		
 		Object obj = request.getParameter("rr_id");
 		if (obj != null) {
+			// Save in session for deletion later
+			session.setAttribute("rr_id", Integer.parseInt(obj.toString()));
+			
 			// Generate resource values for fields in JSP
 			RegisteredResourceDAO dao = new RegisteredResourceDAO();
 			RegisteredResource rr = dao.viewResource(Integer.parseInt(obj.toString()));
@@ -35,7 +40,6 @@ public class UpdateResource extends HttpServlet {
 		// Add name for displaying in JSP
 		RegisteredResourceDAO dao = new RegisteredResourceDAO();
 		try {
-			HttpSession session = request.getSession();
 			int l_id = (int) session.getAttribute("l_id");
 			ArrayList<RegisteredResource> rr = dao.viewResourceByLocationId(l_id);
 			request.setAttribute("resources", rr);
@@ -54,6 +58,17 @@ public class UpdateResource extends HttpServlet {
 		HttpSession session = request.getSession();
 		int rr_id = (int) session.getAttribute("rr_id");
 		RegisteredResourceDAO dao = new RegisteredResourceDAO();
+		try {
+			String special_features = request.getParameter("special_features");
+			int capacity = Integer.parseInt(request.getParameter("capacity"));
+			dao.updateResourceDetails(rr_id, special_features, capacity);
+			request.setAttribute("message", "Resource updated.");
+		} catch (SQLException e) {
+			request.setAttribute("error", "There was a problem updating resource.");
+			e.printStackTrace();
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/ResourceSummary");
 	}
 
 }
