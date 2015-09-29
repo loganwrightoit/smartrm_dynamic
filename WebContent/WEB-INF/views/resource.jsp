@@ -7,22 +7,35 @@
 
 		<form method="post">
 
-			<h4>Select a location</h4>
-			<select name="l_id">
-				<option>Select a location</option>
-				<c:forEach items="${locations}" var="item">
-					<option value="${item.id}">${item.name}</option>
-				</c:forEach>
-			</select>
+			<div class="floating-box round-corners">
 			
-			<select name="task">
-				<option>Select a task</option>
-				<option value="add_resource">Add Resource</option>
-				<option value="update_resource">Update Resource</option>
-				<option value="delete_resource">Delete Resource</option>
-			</select>
+				<h3 class="title">Resource Control Panel</h3>
 
-			<input type="submit" value="Continue" />
+				<div class="form-group">
+					<label>Select Location</label>
+					<br>
+					<select name="l_id" class="form-control" required>
+						<option value="">Select a location</option>
+						<c:forEach items="${locations}" var="item">
+							<option value="${item.id}">${item.name}</option>
+						</c:forEach>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label>Select Task</label>
+					<br>
+					<select name="task" class="form-control" required>
+						<option value="">Select a task</option>
+						<option value="add_resource">Add Resource</option>
+						<option value="update_resource">Update Resource</option>
+						<option value="delete_resource">Delete Resource</option>
+					</select>
+				</div>
+	
+				<button type="submit" class="btn btn-default">Continue</button>
+			
+			</div>
 
 		</form>
 	
