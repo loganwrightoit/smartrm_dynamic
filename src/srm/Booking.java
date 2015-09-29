@@ -68,34 +68,36 @@ public class Booking extends HttpServlet {
 		
 		PrintWriter pw = response.getWriter();			
 		
-		if(!loc.equals("Select a Location") && res.equals("mr"))
+		if(!loc.equals("nolocation") && res.equals("mr"))
 		{
 
-			request.setAttribute("location", loc);
 			if(mode1!=null)
-			{
-				request.getRequestDispatcher("WEB-INF/views/mr_booking_add.jsp").include(request, response);
+			{	// store pickedlocation in session
+				//request.setAttribute("pickedlocation", loc);
+				request.getSession().setAttribute("pickedlocation", loc);
+				response.sendRedirect("BookMeetingRoom");
+				//request.getRequestDispatcher("WEB-INF/views/mr_booking_add.jsp").include(request, response);
 			}
 			else if(mode2!=null)
 			{
-				request.getRequestDispatcher("WEB-INF/views/mr_booking_remove.jsp").include(request, response);
+				response.sendRedirect("UnbookMeetingRoom");
 			}
 			
 			
 			// call the next page
 			//response.sendRedirect("http://msn.com");
 		}
-		if(!loc.equals("Select a Location") && res.equals("ch"))
+		else if(!loc.equals("nolocation") && res.equals("ch"))
 		{
 
 			request.setAttribute("location", loc);
 			if(mode1!=null)
 			{
-				request.getRequestDispatcher("WEB-INF/views/ch_booking_add.jsp").include(request, response);
+				response.sendRedirect("BookConferenceHall");
 			}
 			else if(mode2!=null)
 			{
-				request.getRequestDispatcher("WEB-INF/views/ch_booking_remove.jsp").include(request, response);
+				response.sendRedirect("UnbookConferenceHall");
 			}
 			
 			
@@ -103,17 +105,17 @@ public class Booking extends HttpServlet {
 			//response.sendRedirect("http://msn.com");
 		}
 		
-		if(!loc.equals("Select a Location") && res.equals("esc"))
+		else if(!loc.equals("nolocation") && res.equals("esc"))
 		{
 
 			request.setAttribute("location", loc);
 			if(mode1!=null)
 			{
-				request.getRequestDispatcher("WEB-INF/views/esc_booking_add.jsp").include(request, response);
+				response.sendRedirect("BookEmployeeSeatingCubicle");
 			}
 			else if(mode2!=null)
 			{
-				request.getRequestDispatcher("WEB-INF/views/esc_booking_remove.jsp").include(request, response);
+				response.sendRedirect("UnbookEmployeeSeatingCubicle");
 			}
 			
 			
@@ -125,7 +127,25 @@ public class Booking extends HttpServlet {
 		
 		else
 		{
-			pw.print("false");
+			
+			LocationDAO d = new LocationDAO();
+			ArrayList<LocationModel> lm;
+			try {
+				lm = d.viewLocation();
+				ArrayList<String> lmname = new ArrayList<String>();
+		
+				for(LocationModel tmp : lm)
+			    {
+			    	lmname.add(tmp.getName());
+			    }
+				request.setAttribute("locations", lmname);
+				request.setAttribute("error", "Please select a location/resource");
+				request.getRequestDispatcher("/WEB-INF/views/booking.jsp").forward(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		//System.out.println(temp);	
 		//response.sendRedirect("http://yahoo.com");

@@ -17,7 +17,8 @@ public class BookMeetingRoom extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setAttribute("pickedattribute", request.getSession().getAttribute("pickedattribute"));
+		request.getRequestDispatcher("WEB-INF/views/mr_booking_add.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
