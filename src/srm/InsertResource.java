@@ -55,12 +55,18 @@ public class InsertResource extends HttpServlet {
 		// Grab resource id
 		LocationResourceDAO lr_dao = new LocationResourceDAO();
 		LocationResource lr = lr_dao.readLocationResource(r_type);	
-		
+		System.out.println(lr);
 		// Save resource to database
 		RegisteredResourceDAO dao = new RegisteredResourceDAO();
 		String name = request.getParameter("name");
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
 		String special_features = request.getParameter("special_features");
+		System.out.println(name);
+		System.out.println(l_id);
+		System.out.println(lr.getR_id());
+		System.out.println(special_features);
+		System.out.println(capacity);
+		
 		try {			
 			dao.insertRegisteredResource(name, l_id, lr.getR_id(), special_features, capacity);
 			response.sendRedirect(request.getContextPath() + "/ResourceSummary");
