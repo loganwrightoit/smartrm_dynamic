@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import srm.dao.BookingDAO;
 import srm.dao.LocationDAO;
 import srm.dao.RegisteredResourceDAO;
 import srm.model.RegisteredResource;
@@ -62,6 +63,7 @@ public class BookMeetingRoom extends HttpServlet {
 		String resourcename;
 		LocationDAO ldao = new LocationDAO();	
 		RegisteredResourceDAO rdao = new RegisteredResourceDAO();
+		BookingDAO bdao = new BookingDAO();
 		int l_id;
 		int r_id;
 		
@@ -77,7 +79,9 @@ public class BookMeetingRoom extends HttpServlet {
 		try {
 			l_id = ldao.viewLocationByName(locationname).getId();
 			// create entry into registeredresource table
-			status = rdao.insertRegisteredResource(rName, l_id, r_id, specFeatures, cap);
+			rdao.insertRegisteredResource(rName, l_id, r_id, specFeatures, cap);
+			// create entry into booking table
+			bdao.bookMeetingRoom(l_id, rrid, uid, starttime, endtime, specialrequests, purpose);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
