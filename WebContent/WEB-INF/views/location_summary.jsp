@@ -5,9 +5,10 @@
 <t:master>
 	<jsp:body>
 	
-		<h2 align="center">Location Summary</h2>
-	
 		<div class="floating-box round-corners">
+		
+			<h3 class="title">Location Summary</h3>
+			
 			<table class="table table-striped">
 				<tr>
 					<th>Name</th>
@@ -30,6 +31,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+			
 		</div>
 	
 	</jsp:body>

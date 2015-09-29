@@ -1,44 +1,45 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:master>
 	<jsp:body>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-<h1 class="title">Location</h1>
-<h2 class="subtitle">Registration Service</h2>
-<p>Here you can delete a location.</p>
 
-<form action="DeleteLocation" method="post">
+		<div class="floating-box round-corners">
 
-    <table>
-    	<tr>
-    		<td>Enter ID</td>
-    		<td><input type="text" name="l_id" /></td>
-    	</tr>
-        <tr>
-            <td>Select Location</td>
-            <td>
-                <select name="l_name">
-                    <option value="A">Location A</option>
-                    <option value="B">Location B</option>
-                    <option value="C">Location C</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center"><input type="submit" value="Delete Location"/></td>
-        </tr>
-    </table>
+			<h3 class="title">Delete a Resource</h3>
 
-</form>
-</body>
-</html>
-</jsp:body>
+			<form method="get">
+				<div class="form-group">
+					<label>Select Location</label>
+					<br>
+					<select name="l_id" onchange="this.form.submit()" class="form-control" required>
+						<option value="">Select a Location</option>
+						<c:forEach items="${locations}" var="item">
+							<option value="${item.id}" ${l_id==item.id?'selected':''}>${item.name}</option>
+						</c:forEach>
+					</select>
+				</div>				
+			</form>
+			
+			<form method="post">
+				<div class="form-group">
+					<label>Description</label>
+					<br>
+					<textarea name="description" class="form-control" style="background-color: rgb(238,238,238);" disabled>${description}</textarea>
+				</div>
+				<div class="form-group">
+					<label>City</label>
+					<input type="text" class="form-control" name="city" value="${city}" disabled>
+				</div>
+				<div class="form-group">
+					<label>Country</label>
+					<input type="text" class="form-control" name="country" value="${country}" disabled>
+				</div>
+				<button type="submit" class="btn btn-default">Delete</button>
+			</form>
+
+		</div>
+
+	</jsp:body>
 </t:master>
