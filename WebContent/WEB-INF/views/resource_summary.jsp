@@ -5,18 +5,20 @@
 <t:master>
 	<jsp:body>
 	
-		<h2 align="center">Resource Summary for Location ${l_name}</h2>
+		<h2 align="center">Resource Summary for ${l_name}</h2>
 	
 		<div class="floating-box round-corners">
 			<table class="table table-striped">
 				<tr>
 					<th>Name</th>
+					<th>Resource Type</th>
 					<th>Capacity</th>
 					<th>Special Features</th>
 				</tr>
 				<c:forEach items="${resources}" var="item">
 					<tr>
-						<td>${item.name}</td>
+						<td>${item.rr_name}</td>
+						<td>${item.r_name}</td>
 						<td>${item.capacity}</td>
 						<td>${item.special_features}</td>
 					</tr>

@@ -54,7 +54,11 @@ public class RegisteredResourceDAO {
 	    	
 	    	try
 	    	{
-	    		String selSt="Select * FROM registeredresource WHERE l_id=?";
+	    		String selSt="SELECT rr.rr_id, rr.rr_name, rr.l_id, rr.r_id, lr.r_name, rr.special_features, rr.capacity " +
+	    				     "FROM registeredresource rr " +
+	    				     "JOIN locationresource lr " +
+	    				     "ON rr.r_id = lr.r_id " +
+	    				     "WHERE l_id = ?";
 	    		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
 	    		stat.setInt(1, l_id);
 	    		ResultSet data=stat.executeQuery();
@@ -63,12 +67,13 @@ public class RegisteredResourceDAO {
 	    		{
 	    			
 	    			int rrId=data.getInt(1);
-	    			String name=data.getString(2);
+	    			String rrName=data.getString(2);
 	    			int lId=data.getInt(3);
 	    			int rId=data.getInt(4);
-	    			String specFeatures=data.getString(5);
-	    			int cap=data.getInt(6);
-	    			list.add(new RegisteredResource(rrId, name, lId, rId, specFeatures, cap));
+	    			String rName=data.getString(5);
+	    			String specFeatures=data.getString(6);
+	    			int cap=data.getInt(7);
+	    			list.add(new RegisteredResource(rrId, rrName, lId, rId, rName, specFeatures, cap));
 	    			
 	    		}
 	    	}
@@ -81,114 +86,7 @@ public class RegisteredResourceDAO {
 	    	
 	    	return list;
 	    }
-	    /*
-	    public LocationModel viewLocationByName(String name) throws SQLException
-	    {
-	    	LocationModel loc=null;
-	    	try
-	    	{
-	    		String selSt="Select * FROM Location WHERE l_name=?";
-	    		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
-	    		stat.setString(1, name);
-	    		ResultSet data=stat.executeQuery();
-	    		ResultSetMetaData meta=data.getMetaData();
-	    		int colCount=meta.getColumnCount();
-	    		
-	    		while(data.next())
-	    		{
-	    			
-	    			int uid=data.getInt(1);
-	    			String lName=data.getString(2);
-	    			String desc=data.getString(3);
-	    			String phone=data.getString(4);
-	    			String head=data.getString(5);
-	    			String city=data.getString(6);
-	    			String country=data.getString(7);
-	    			double timezone=data.getDouble(8);
-	    			loc=new LocationModel(uid, lName, desc, phone, head, city, country, timezone);
-	    			
-	    		}
-	    	}
-	    	catch(Exception e)
-	    	{
-	    		System.out.println("Error while viewing");
-	    		throw new SQLException();
-	    	}
-	    	return loc;
-	    }    
-	    
-	    public ArrayList<LocationModel> viewLocationByCity(String city, String country) throws SQLException
-	    {
-	    	ArrayList<LocationModel> lms=new ArrayList<>();
-	 
-	    	try
-	    	{
-	    		String selSt="Select * FROM Location WHERE l_name=?";
-	    		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
-	    		stat.setString(1, city);
-	    		stat.setString(2, country);
-	    		ResultSet data=stat.executeQuery();
-	    		ResultSetMetaData meta=data.getMetaData();
-	    		int colCount=meta.getColumnCount();
-	    		
-	    		while(data.next())
-	    		{
-	    			
-	    			int uid=data.getInt(1);
-	    			String lName=data.getString(2);
-	    			String desc=data.getString(3);
-	    			String phone=data.getString(4);
-	    			String head=data.getString(5);
-	    			String lCity=data.getString(6);
-	    			String lCountry=data.getString(7);
-	    			double timezone=data.getDouble(8);
-	    			lms.add(new LocationModel(uid, lName, desc, phone, head, lCity, lCountry, timezone));
-	    			
-	    		}
-	    	}
-	    	catch(Exception e)
-	    	{
-	    		System.out.println("Error while viewing");
-	    		throw new SQLException();
-	    	}
-	    	return lms;
-	    }    
-	    
-	    public LocationModel viewLocationByHead(String head) throws SQLException
-	    {
-	    	LocationModel loc=null;
-	    	try
-	    	{
-	    		String selSt="Select * FROM Location WHERE l_name=?";
-	    		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
-	    		stat.setString(1, head);
-	    		ResultSet data=stat.executeQuery();
-	    		ResultSetMetaData meta=data.getMetaData();
-	    		int colCount=meta.getColumnCount();
-	    		
-	    		while(data.next())
-	    		{
-	    			
-	    			int uid=data.getInt(1);
-	    			String lName=data.getString(2);
-	    			String desc=data.getString(3);
-	    			String phone=data.getString(4);
-	    			String lHead=data.getString(5);
-	    			String city=data.getString(6);
-	    			String country=data.getString(7);
-	    			double timezone=data.getDouble(8);
-	    			loc=new LocationModel(uid, lName, desc, phone, lHead, city, country, timezone);
-	    			
-	    		}
-	    	}
-	    	catch(Exception e)
-	    	{
-	    		System.out.println("Error while viewing");
-	    		throw new SQLException();
-	    	}
-	    	return loc;
-	    }    
-	    */
+
 		public boolean insertRegisteredResource(String rName, int lId, int rId, String specFeatures, int cap) throws SQLException
 		{
 			try
@@ -220,76 +118,7 @@ public class RegisteredResourceDAO {
 			}
 			return true;
 		}
-		/*
-		public boolean updateLocationHead(int lId, String lHead) throws SQLException
-		{
-			try
-			{
-				String updateSt="UPDATE Location SET l_head=? WHERE l_id=?";
-				PreparedStatement stat=DB.getDBConnection().prepareStatement(updateSt);
-				stat.setString(1, lHead);
-				stat.setInt(2, lId);
-				int res=stat.executeUpdate();
-				if (res>0)
-					System.out.println("Data updated");
-			}
-			catch (Exception e)
-			{
-				System.out.println("Error while updating");
-
-				throw new SQLException();
-				
-			}
-			return true;
-		}
-		public boolean updateLocationPlace(int lId, String city, String country, double timeZone) throws SQLException
-		{
-			try
-			{
-				String updateSt="UPDATE Location SET l_city=?, l_country=?, l_timezone=? WHERE l_id=?";
-				PreparedStatement stat=DB.getDBConnection().prepareStatement(updateSt);
-				stat.setString(1, city);
-				stat.setString(2, country);
-				stat.setDouble(3, timeZone);
-				stat.setInt(4, lId);
-				int res=stat.executeUpdate();
-				if (res>0)
-				{
-					System.out.println("Data updated");
-				}
-			}
-			catch (Exception e)
-			{
-				System.out.println("Error while updating");
-				e.printStackTrace();
-
-				throw new SQLException();
-			}
-			return true;
-		}
-		public boolean updateLocationPhone(int lId, String lPhone) throws SQLException
-		{
-			try
-			{
-				String updateSt="UPDATE Location SET l_phone=? WHERE l_id=?";
-				PreparedStatement stat=DB.getDBConnection().prepareStatement(updateSt);
-				stat.setString(1, lPhone);
-				stat.setInt(2, lId);
-				int res=stat.executeUpdate();
-				if (res>0)
-				{
-					System.out.println("Data updated");
-				}
-			}
-			catch (Exception e)
-			{
-				System.out.println("Error while updating");
-
-				throw new SQLException();
-			}
-			return true;
-		}
-		*/
+		
 		public boolean updateResourceDetails(int rrId, String specFeatures, int cap) throws SQLException
 		{
 			try

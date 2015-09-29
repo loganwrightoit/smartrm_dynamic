@@ -54,23 +54,15 @@ public class InsertResource extends HttpServlet {
 		
 		// Grab resource id
 		LocationResourceDAO lr_dao = new LocationResourceDAO();
-		LocationResource lr = lr_dao.readLocationResource(r_type);		
+		LocationResource lr = lr_dao.readLocationResource(r_type);	
 		
 		// Save resource to database
 		RegisteredResourceDAO dao = new RegisteredResourceDAO();
 		String name = request.getParameter("name");
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
 		String special_features = request.getParameter("special_features");
-		try {
-			
-			System.out.println("name: " + name);
-			System.out.println("l_id: " + l_id);
-			System.out.println("r_id: " + lr.getR_id());
-			System.out.println("special_features: " + special_features);
-			System.out.println("capacity: " + capacity);
-			
+		try {			
 			dao.insertRegisteredResource(name, l_id, lr.getR_id(), special_features, capacity);
-			request.setAttribute("message", "Resource Successfully Added");
 			response.sendRedirect(request.getContextPath() + "/ResourceSummary");
 		} catch (SQLException e) {
 			request.setAttribute("error", "Encountered error while adding resource.");

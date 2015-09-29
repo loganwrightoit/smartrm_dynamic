@@ -7,16 +7,6 @@ import java.sql.ResultSet;
 import srm.model.LocationResource;
 
 public class LocationResourceDAO {
-
-	/*
-	 	CREATE TABLE locationresource
-		(
-			r_id number primary key,
-			r_name char(10) not null,
-			r_type varchar(10),
-			description varchar(1000)
-		);
-	 */
 	
 	/**
 	 * Reads location resource given a resource type.
