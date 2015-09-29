@@ -8,9 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import srm.model.LocationResource;
 import srm.model.RegisteredResource;
-public class RegisteredResourceDAO {
 
+<<<<<<< HEAD
 		public RegisteredResource viewRegisteredResourceByName(String qname) throws SQLException
 		{
 			RegisteredResource rms = null;
@@ -43,7 +44,38 @@ public class RegisteredResourceDAO {
 	    	}
 	    	return rms;
 		}
+=======
+public class RegisteredResourceDAO
+{
 
+	public RegisteredResource viewResource(int rr_id)
+	{
+		try
+		{
+			String updateSt="SELECT * FROM registeredresource WHERE rr_id = ?";
+			PreparedStatement pstat = DB.getDBConnection().prepareStatement(updateSt);
+			pstat.setInt(1, rr_id);
+			ResultSet rset = pstat.executeQuery();
+>>>>>>> 11f9a5361c57d96627773b1465f84adcaff41915
+
+    		// Test for empty set
+    		if (!rset.isBeforeFirst()) {
+    			return null;
+    		} else {
+    			rset.next();
+    			return new RegisteredResource(rset.getInt(1), rset.getString(2), rset.getInt(3), rset.getInt(4), rset.getString(5), rset.getInt(6));
+    		}
+			
+		}
+		catch (Exception e)
+		{
+			System.out.println("Encountered error while calling for registered resource by id.");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	    public ArrayList<RegisteredResource> viewLocation() throws SQLException
 	    {
 	    	ArrayList<RegisteredResource> rms=new ArrayList<>();
@@ -120,23 +152,14 @@ public class RegisteredResourceDAO {
 		public boolean insertRegisteredResource(String rName, int lId, int rId, String specFeatures, int cap) throws SQLException
 		{
 			try
-			{
-				String seqSt="SELECT rr_id_seq.NEXTVAL FROM dual";
-				Connection con=DB.getDBConnection();
-				Statement st=con.createStatement();
-				ResultSet r=st.executeQuery(seqSt);
-				r.next();
-				int seqNum=r.getInt(1);
-				st.close();
-				
-				String insSt="INSERT INTO registeredresource VALUES (?, ?, ?, ?, ?, ?)";
+			{				
+				String insSt="INSERT INTO registeredresource VALUES (rr_id_seq.NEXTVAL, ?, ?, ?, ?, ?)";
 				PreparedStatement stat=DB.getDBConnection().prepareStatement(insSt);
-				stat.setInt(1, seqNum);
-				stat.setString(2, rName);
-				stat.setInt(3, lId);
-				stat.setInt(4, rId);
-				stat.setString(5, specFeatures);
-				stat.setInt(6, cap);
+				stat.setString(1, rName);
+				stat.setInt(2, lId);
+				stat.setInt(3, rId);
+				stat.setString(4, specFeatures);
+				stat.setInt(5, cap);
 				int res=stat.executeUpdate();
 				if (res>0)
 					System.out.println("Data inserted");
@@ -149,16 +172,17 @@ public class RegisteredResourceDAO {
 			return true;
 		}
 		
-		public boolean updateResourceDetails(int rrId, String specFeatures, int cap) throws SQLException
+		public boolean updateResourceDetails(int rr_id, String special_features, int capacity) throws SQLException
 		{
 			try
 			{
-				String updateSt="UPDATE registeredresource SET specFeatures=?, cap=? WHERE l_id=?";
-				PreparedStatement stat=DB.getDBConnection().prepareStatement(updateSt);
-				stat.setString(1, specFeatures);
-				stat.setInt(2, cap);
-				int res=stat.executeUpdate();
-				if (res>0)
+				String updateSt="UPDATE registeredresource SET special_features = ?, capacity = ? WHERE rr_id = ?";
+				PreparedStatement pstat = DB.getDBConnection().prepareStatement(updateSt);
+				pstat.setString(1, special_features);
+				pstat.setInt(2, capacity);
+				pstat.setInt(3, rr_id);
+				int res = pstat.executeUpdate();
+				if (res > 0)
 				{
 					System.out.println("Data updated");
 				}
