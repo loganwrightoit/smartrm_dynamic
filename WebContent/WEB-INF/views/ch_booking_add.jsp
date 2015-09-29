@@ -8,34 +8,37 @@
 		
 		<table>
 			<tr>
-				<td>Name:</td>
-				<td><input type="text" name="name" Required></td>
+				<td>Location Id:</td>
+				<td><input type="number" name="l_id" Required></td>
+			</tr>
+			<tr>
+				<td>Resource Id:</td>
+				<td><input type="number" name="rr_id" Required></td>
 			</tr>
 					
 			<tr>
-				<td>Room Number:</td>
-				<td><input type="number" min="1" name="roomnumber" Required></td>
+				<td>User Id:</td>
+				<td><input type="number" name="u_id" Required></td>
+			</tr>
+			
+			<tr>
+				<td>Start Time:</td>
+				<td><input type="datetime" name="start_time" Required></td>
 			</tr>
 
 			<tr>
-				<td>Date:</td>
-				<td><input type="date" name="date" Required></td>
+				<td>End Time:</td>
+				<td><input type="datetime" name="end_time" Required></td>
+			</tr>
+			<tr>
+				<td>Special Requests:</td>
+				<td><input type="text" name="special_requests" Required></td>
+			</tr>
+			<tr>
+				<td>Purpose:</td>
+				<td><input type="text" name="purpose" Required></td>
 			</tr>
 			
-			<tr>
-				<td>Date:</td>
-				<td><input type="date" name="date" Required></td>
-			</tr>
-			
-			<tr>
-				<td>Date:</td>
-				<td><input type="date" name="date" Required></td>
-			</tr>
-			
-		
-			<tr>
-				<td>Time:</td>
-				<td><input type="text" placeholder="2:00pm - 3:00pm" name="time" Required>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="Book"/></td>
 			</tr>
