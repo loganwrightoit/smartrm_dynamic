@@ -21,7 +21,18 @@
 				<td>Date:</td>
 				<td><input type="date" name="date" Required></td>
 			</tr>
-
+			
+			<tr>
+				<td>Date:</td>
+				<td><input type="date" name="date" Required></td>
+			</tr>
+			
+			<tr>
+				<td>Date:</td>
+				<td><input type="date" name="date" Required></td>
+			</tr>
+			
+		
 			<tr>
 				<td>Time:</td>
 				<td><input type="text" placeholder="2:00pm - 3:00pm" name="time" Required>

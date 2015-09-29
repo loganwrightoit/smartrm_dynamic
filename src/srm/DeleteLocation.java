@@ -69,7 +69,7 @@ public class DeleteLocation extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			req.setAttribute("error", "Something went wrong");
+			req.setAttribute("error", "This entry can't be deleted, because another table depends on it.");
 			rd=req.getRequestDispatcher("/WEB-INF/views/location_delete.jsp");
 			rd.include(req, res);
 		}

@@ -154,6 +154,7 @@ public class RegisteredResourceDAO
 				PreparedStatement pstat = DB.getDBConnection().prepareStatement(updateSt);
 				pstat.setString(1, special_features);
 				pstat.setInt(2, capacity);
+				pstat.setInt(3, rr_id);
 				int res = pstat.executeUpdate();
 				if (res > 0)
 				{
