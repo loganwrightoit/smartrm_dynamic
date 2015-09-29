@@ -2,6 +2,7 @@ package srm;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import srm.dao.LocationDAO;
+import srm.model.LocationModel;
 
 /**
  * Servlet implementation class UpdateLocation
@@ -46,9 +48,29 @@ public class UpdateLocation extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
 	{
-		
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/location_update.jsp");
-		rd.include(req, res);
+		LocationDAO dao = new LocationDAO();
+		try {
+
+				ArrayList<LocationModel> list = dao.viewLocation();
+				req.setAttribute("locations", list);
+				if (req.getParameter("l_id")!=null)
+				{
+					LocationModel thisLoc=dao.viewLocationById(Integer.parseInt(req.getParameter("l_id")));
+					System.out.println(thisLoc.getName());
+					req.setAttribute("l_id", thisLoc.getId());
+					req.setAttribute("l_name", thisLoc.getName());
+					req.setAttribute("l_desc", thisLoc.getDescription());
+					req.setAttribute("l_phone", thisLoc.getPhone());
+					req.setAttribute("l_head", thisLoc.getHead());
+					req.setAttribute("l_city", thisLoc.getCity());
+					req.setAttribute("l_country", thisLoc.getCountry());
+			}
+		} catch (SQLException e) {
+			req.setAttribute("error", "Unable to connect to database");
+			e.printStackTrace();
+		}
+
+		req.getRequestDispatcher("/WEB-INF/views/location_update.jsp").forward(req, res);
 	}
 
 	/**

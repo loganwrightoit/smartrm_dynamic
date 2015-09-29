@@ -1,5 +1,6 @@
 package srm.dao;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,13 +86,20 @@ public class BookingDAO {
 		}
 	}
 	
-	public boolean bookMeetingRoom(int bid,int lid,int rrid,int uid, String starttime,String endtime, String specialrequests, String purpose) throws SQLException
+	public boolean bookMeetingRoom(int lid,int rrid,int uid, String starttime,String endtime, String specialrequests, String purpose) throws SQLException
 	{
 		try
 		{
+			String seqSt="SELECT b_id_seq.NEXTVAL FROM dual";
+			Connection con=DB.getDBConnection();
+			Statement st=con.createStatement();
+			ResultSet r=st.executeQuery(seqSt);
+			r.next();
+			int seqNum=r.getInt(1);
+			st.close();
 			String insSt = "Insert into Booking values(?,?,?,?,?,?,?,?)";
 			PreparedStatement stat = DB.getDBConnection().prepareStatement(insSt);
-			stat.setInt(1, bid);
+			stat.setInt(1, seqNum);
 			stat.setInt(2, lid);
 			stat.setInt(3, rrid);
 			stat.setInt(4, uid);
@@ -150,14 +158,21 @@ public class BookingDAO {
 		}
 	}
 	
-	public boolean bookConferenceHall(int bid,int lid,int rrid,int uid, String starttime,String endtime, String specialrequests, String purpose) throws SQLException
+	public boolean bookConferenceHall(int lid,int rrid,int uid, String starttime,String endtime, String specialrequests, String purpose) throws SQLException
 	{
 		try
 		{
+			String seqSt="SELECT b_id_seq.NEXTVAL FROM dual";
+			Connection con=DB.getDBConnection();
+			Statement st=con.createStatement();
+			ResultSet r=st.executeQuery(seqSt);
+			r.next();
+			int seqNum=r.getInt(1);
+			st.close();
 			String insSt = "Insert into booking values(?,?,?,?,?,?,?,?)";
 			PreparedStatement stat = DB.getDBConnection().prepareStatement(insSt);
 			
-			stat.setInt(1, bid);
+			stat.setInt(1, seqNum);
 			stat.setInt(2, lid);
 			stat.setInt(3, rrid);
 			stat.setInt(4, uid);
@@ -215,13 +230,21 @@ public class BookingDAO {
 		}
 	}
 	
-	public boolean bookEmployeeSeatingCubicle(int bid,int lid,int rrid,int uid, String starttime,String endtime, String specialrequests, String purpose) throws SQLException
+	public boolean bookEmployeeSeatingCubicle(int lid,int rrid,int uid, String starttime,String endtime, String specialrequests, String purpose) throws SQLException
 	{
 		try
 		{
+			String seqSt="SELECT b_id_seq.NEXTVAL FROM dual";
+			Connection con=DB.getDBConnection();
+			Statement st=con.createStatement();
+			ResultSet r=st.executeQuery(seqSt);
+			r.next();
+			int seqNum=r.getInt(1);
+			st.close();
+			
 			String insSt = "Insert into Booking values(?,?,?,?,?,?,?,?)";
 			PreparedStatement stat = DB.getDBConnection().prepareStatement(insSt);
-			stat.setInt(1, bid);
+			stat.setInt(1, seqNum);
 			stat.setInt(2, lid);
 			stat.setInt(3, rrid);
 			stat.setInt(4, uid);

@@ -17,36 +17,49 @@
 <h2 class="subtitle">Registration Service</h2>
 <p>Here you can modify a location.</p>
 
-<form action="UpdateLocation" method="post">
+<form  method="get">
 
+			<h4>Select a location</h4>
+			<select name="l_id" onchange="this.form.submit()">
+				<option>Select a location</option>
+				<c:forEach items="${locations}" var="item">
+					<option value="${item.id}">${item.name}</option>
+				</c:forEach>
+			</select>
+</form>
+<form action="UpdateLocation" method="post">
     <table>
     	<tr>
-    		<td>Enter ID</td>
-    		<td><input type="text" name="l_id" /></td>
+    		<td><input type="submit" value="search" /></td>
+    		
+    	</tr>
+    	<tr>
+    		<td>Current ID:</td>
+    		<td><input type="text"  value= "${l_id}"name="l_id" /></td>
     	</tr>    	
         <tr>
             <td>Name</td>
-            <td><input type="text" name="l_name" placeholder="Name"/></td>
+            <td><input type="text" value="${l_name}" name="l_name" /></td>
         </tr>
         <tr>
             <td>Description</td>
-            <td><textarea name="l_desc" placeholder="Description"></textarea></td>
+            <td><textarea name="l_desc"  >${l_desc}</textarea></td>
         </tr>
         <tr>
             <td>Phone</td>
-            <td><input type="tel" name="l_phone" placeholder="Phone Number"/></td>
+            <td><input type="tel" value="${l_phone}" name="l_phone" /></td>
         </tr>
         <tr>
             <td>Location Head</td>
-            <td><input type="text" name="l_head" placeholder="Location Head"/></td>
+            <td><input type="text" value="${l_head}" name="l_head" placeholder="Location Head"/></td>
         </tr>
         <tr>
             <td>City</td>
-            <td><input type="text" name="l_city" placeholder="City"/></td>
+            <td><input type="text" value="${l_city}" name="l_city" placeholder="City"/></td>
         </tr>
         <tr>
             <td>Country</td>
-            <td><input type="text" name="l_country" placeholder="Country"/></td>
+            <td><input type="text" value="${l_country}" name="l_country" placeholder="Country"/></td>
         </tr>
         <tr>
             <td>Time Zone</td>

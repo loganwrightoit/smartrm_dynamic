@@ -23,14 +23,11 @@ public class ResourceSummary extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		LocationDAO dao = new LocationDAO();
 		HttpSession session = request.getSession();
 		int l_id = (int) session.getAttribute("l_id");
 		
 		try {
-			LocationModel lm = dao.viewLocationById(l_id);
-			request.setAttribute("l_id", l_id);
-			
+			request.setAttribute("l_id", l_id); // This is lost during redirect			
 			RegisteredResourceDAO rr_dao = new RegisteredResourceDAO();
 			ArrayList<RegisteredResource> resources = rr_dao.viewResourceByLocationId(l_id);
 			request.setAttribute("resources", resources);

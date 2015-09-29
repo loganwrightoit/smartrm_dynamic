@@ -4,10 +4,11 @@
 
 <t:master>
 	<jsp:body>
-	
-		<h2 align="center">Resource Summary for ${l_name}</h2>
-	
+
 		<div class="floating-box round-corners">
+		
+			<h3 class="title">Resource Summary</h3>
+		
 			<table class="table table-striped">
 				<tr>
 					<th>Name</th>
