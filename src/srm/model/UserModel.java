@@ -15,6 +15,11 @@ public class UserModel
         this.u_pass = u_pass;
         this.u_level = u_level;
     }
+    
+    public int getU_id()
+    {
+    	return u_id;
+    }
 
     public String getU_name() {
         return u_name;

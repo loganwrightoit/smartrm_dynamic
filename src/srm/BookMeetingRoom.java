@@ -66,22 +66,29 @@ public class BookMeetingRoom extends HttpServlet {
 		BookingDAO bdao = new BookingDAO();
 		int l_id;
 		int r_id;
+		int u_id;
 		
 		locationname = s.getAttribute("pickedlocation").toString(); // location name
 		//resourcename = s.getAttribute("pickedresource").toString(); // registeredresource name
 		r_id = Integer.parseInt(s.getAttribute("r_id").toString()); // locationresource id
+		u_id = Integer.parseInt(s.getAttribute("u_id").toString());
 		
 		String rName = request.getParameter("roomname");
 		int cap = Integer.parseInt(request.getParameter("capacity").toString());
 		String specFeatures = request.getParameter("specialfeatures").toString();
+		String specialrequests = request.getParameter("specialrequests").toString();
+		String purpose = request.getParameter("purpose").toString();
+		String starttime = request.getParameter("starttime").toString();
+		String endtime = request.getParameter("endtime").toString();
 		boolean status = false;
 		
 		try {
 			l_id = ldao.viewLocationByName(locationname).getId();
 			// create entry into registeredresource table
 			rdao.insertRegisteredResource(rName, l_id, r_id, specFeatures, cap);
+			int rr_id = rdao.getSequenceNumber();
 			// create entry into booking table
-			bdao.bookMeetingRoom(l_id, rrid, uid, starttime, endtime, specialrequests, purpose);
+			status = bdao.bookMeetingRoom(l_id, rr_id, u_id, starttime, endtime, specialrequests, purpose);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
