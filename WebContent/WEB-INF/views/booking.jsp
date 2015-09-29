@@ -10,7 +10,7 @@
 		<tr><td><h1 class="title">Select a location</h1><td><tr>
 		<tr><td colspan="2">
 		<select id="location" name="blocation">
-		        <option value="locationselect">Select a Location</option>
+		        <option value="nolocation">Select a Location</option>
 		        <c:forEach items="${locations}" var="d">
 		        	<option value="${d}">${d}</option>
 		        </c:forEach>
@@ -21,7 +21,7 @@
 		
 		<tr><td>
 		<select id="resource" name="bresource">
-		        <option value="resourceselect">Select a Resource</option>
+		        <option value="noresource">Select a Resource</option>
 			<option value="mr">Meeting Rooms</option>
 			<option value="ch">Conference Hall</option>
 			<option value="esc">Employee Seating Cubicles</option>
