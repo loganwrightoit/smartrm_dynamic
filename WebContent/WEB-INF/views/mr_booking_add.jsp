@@ -26,8 +26,8 @@
 				<td><input type="number" name="capacity" placeholder="Enter room capacity" /></td>
 				<br>
 				<tr>
-				<td>Description:</td>
-				<td><textarea rows="5" cols="22" name="description"> </textarea></td>
+				<td>Special Features:</td>
+				<td><textarea rows="5" cols="22" name="specialfeatures"> </textarea></td>
 				</tr>
 				<br>
 				<tr>

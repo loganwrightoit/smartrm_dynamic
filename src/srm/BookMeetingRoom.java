@@ -1,11 +1,19 @@
 package srm;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import srm.dao.LocationDAO;
+import srm.dao.RegisteredResourceDAO;
+import srm.model.RegisteredResource;
 
 
 @WebServlet("/BookMeetingRoom")
@@ -22,6 +30,7 @@ public class BookMeetingRoom extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		/* to book meeting room, we require to insert the following record into the booking table
 		 * 
 		 *  // fetch from db the l_id from location table
@@ -48,9 +57,38 @@ public class BookMeetingRoom extends HttpServlet {
 	
 		 */
 		
+		HttpSession s = request.getSession();
+		String locationname;
+		String resourcename;
+		LocationDAO ldao = new LocationDAO();	
+		RegisteredResourceDAO rdao = new RegisteredResourceDAO();
 		int l_id;
 		int r_id;
 		
+		locationname = s.getAttribute("pickedlocation").toString(); // location name
+		//resourcename = s.getAttribute("pickedresource").toString(); // registeredresource name
+		r_id = Integer.parseInt(s.getAttribute("r_id").toString()); // locationresource id
+		
+		String rName = request.getParameter("roomname");
+		int cap = Integer.parseInt(request.getParameter("capacity").toString());
+		String specFeatures = request.getParameter("specialfeatures").toString();
+		boolean status = false;
+		
+		try {
+			l_id = ldao.viewLocationByName(locationname).getId();
+			// create entry into registeredresource table
+			status = rdao.insertRegisteredResource(rName, l_id, r_id, specFeatures, cap);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(status)
+		{
+			PrintWriter pw = response.getWriter();
+			pw.print("Book Inserted!");
+			
+		}
 	}
 
 }
