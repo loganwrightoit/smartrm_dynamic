@@ -117,23 +117,14 @@ public class RegisteredResourceDAO
 		public boolean insertRegisteredResource(String rName, int lId, int rId, String specFeatures, int cap) throws SQLException
 		{
 			try
-			{
-				String seqSt="SELECT rr_id_seq.NEXTVAL FROM dual";
-				Connection con=DB.getDBConnection();
-				Statement st=con.createStatement();
-				ResultSet r=st.executeQuery(seqSt);
-				r.next();
-				int seqNum=r.getInt(1);
-				st.close();
-				
-				String insSt="INSERT INTO registeredresource VALUES (?, ?, ?, ?, ?, ?)";
+			{				
+				String insSt="INSERT INTO registeredresource VALUES (rr_id_seq.NEXTVAL, ?, ?, ?, ?, ?)";
 				PreparedStatement stat=DB.getDBConnection().prepareStatement(insSt);
-				stat.setInt(1, seqNum);
-				stat.setString(2, rName);
-				stat.setInt(3, lId);
-				stat.setInt(4, rId);
-				stat.setString(5, specFeatures);
-				stat.setInt(6, cap);
+				stat.setString(1, rName);
+				stat.setInt(2, lId);
+				stat.setInt(3, rId);
+				stat.setString(4, specFeatures);
+				stat.setInt(5, cap);
 				int res=stat.executeUpdate();
 				if (res>0)
 					System.out.println("Data inserted");
