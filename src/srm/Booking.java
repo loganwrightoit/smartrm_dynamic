@@ -30,7 +30,7 @@ public class Booking extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// load first the location drop down
-		HttpSession s = request.getSession(true);
+		HttpSession s = request.getSession(false);
 		
 		
 		//scenario-based
@@ -208,7 +208,7 @@ public class Booking extends HttpServlet {
 					response.sendRedirect("UnbookMeetingRoom");
 				}
 			}
-			else if(!loc.equals("nolocation") && res.equals("2"))
+			else if(!loc.equals("nolocation") && resID.equals("2"))
 			{
 
 				request.setAttribute("location", loc);
@@ -223,7 +223,7 @@ public class Booking extends HttpServlet {
 				}
 			}
 			
-			else if(!loc.equals("nolocation") && res.equals("3"))
+			else if(!loc.equals("nolocation") && resID.equals("3"))
 			{
 
 				request.setAttribute("location", loc);

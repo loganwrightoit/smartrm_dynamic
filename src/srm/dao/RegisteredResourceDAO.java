@@ -21,7 +21,7 @@ public class RegisteredResourceDAO
 		try
 		{
 			String selSt="Select * FROM registeredresource where rr_name = ?";
-    		PreparedStatement stat=DB.getDBConnection().prepareStatement("selSt");
+    		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
     		stat.setString(1, qname);
     		ResultSet data=stat.executeQuery();
     		ResultSetMetaData meta=data.getMetaData();
