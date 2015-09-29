@@ -16,7 +16,7 @@
 					<select name="rr_id" onchange="this.form.submit()" class="form-control" required>
 						<option value="">Select a Resource</option>
 						<c:forEach items="${resources}" var="item">
-							<option value="${item.rr_id}">${item.rr_name}</option>
+							<option value="${item.rr_id}" ${rr_id==item.rr_id?'selected':''}>${item.rr_name}</option>
 						</c:forEach>
 					</select>
 				</form>
@@ -33,7 +33,7 @@
 				</div>
 				<div class="form-group">
 					<label>Special Features</label>
-					<textarea style="background-color: rgba(150,150,150,0.05);" class="form-control" disabled>${special_features}</textarea>
+					<textarea style="background-color: rgb(238,238,238);" class="form-control" disabled>${special_features}</textarea>
 				</div>
 				<button type="submit" class="btn btn-default">Delete</button>
 			</form>

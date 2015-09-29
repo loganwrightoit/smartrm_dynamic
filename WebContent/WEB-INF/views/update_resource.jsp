@@ -16,7 +16,7 @@
 					<select name="rr_id" onchange="this.form.submit()" class="form-control" required>
 						<option value="">Select a Resource</option>
 						<c:forEach items="${resources}" var="item">
-							<option value="${item.rr_id}">${item.rr_name}</option>
+							<option value="${item.rr_id}" ${rr_id==item.rr_id?'selected':''}>${item.rr_name}</option>
 						</c:forEach>
 					</select>
 				</div>				
