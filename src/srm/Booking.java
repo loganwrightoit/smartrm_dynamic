@@ -42,6 +42,10 @@ public class Booking extends HttpServlet {
 			// get the locations
 			LocationDAO d = new LocationDAO();
 			ArrayList<LocationModel> lm;
+			
+			RegisteredResourceDAO d2 = new RegisteredResourceDAO();
+			ArrayList<RegisteredResource> rrmodellist;
+			
 			try {
 				lm = d.viewLocation();
 				ArrayList<String> lmname = new ArrayList<String>();
@@ -51,26 +55,23 @@ public class Booking extends HttpServlet {
 			    	lmname.add(tmp.getName());
 			    }
 				request.setAttribute("locations", lmname);
+				
+				
+				
+				rrmodellist = d2.viewLocation();
+				ArrayList<String> rrname = new ArrayList<String>();
+				
+				for(RegisteredResource tmp : rrmodellist)
+				{
+					rrname.add(tmp.getRr_name());
+				}
+				request.setAttribute("resources", rrname);
+				
 				request.getRequestDispatcher("/WEB-INF/views/booking.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			RegisteredResourceDAO d2 = new RegisteredResourceDAO();
-			ArrayList<RegisteredResource> rrmodellist;
-			try
-			{
-				rrmodellist = d2.viewLocation();
-				
-			}
-			catch(SQLException e)
-			{
-				
-			}
-			
-			
-			
 			
 			
 		}
@@ -148,16 +149,32 @@ public class Booking extends HttpServlet {
 			
 			LocationDAO d = new LocationDAO();
 			ArrayList<LocationModel> lm;
+			
+
+			RegisteredResourceDAO d2 = new RegisteredResourceDAO();
+			ArrayList<RegisteredResource> rrmodellist;
+			
 			try {
 				lm = d.viewLocation();
 				ArrayList<String> lmname = new ArrayList<String>();
-		
+				
 				for(LocationModel tmp : lm)
 			    {
 			    	lmname.add(tmp.getName());
 			    }
 				request.setAttribute("locations", lmname);
 				request.setAttribute("error", "Please select a location/resource");
+				
+				rrmodellist = d2.viewLocation();
+				ArrayList<String> rrname = new ArrayList<String>();
+				
+				for(RegisteredResource tmp : rrmodellist)
+				{
+					rrname.add(tmp.getRr_name());
+				}
+				request.setAttribute("resources", rrname);
+				
+				
 				request.getRequestDispatcher("/WEB-INF/views/booking.jsp").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

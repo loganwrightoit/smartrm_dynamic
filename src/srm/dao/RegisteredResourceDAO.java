@@ -9,14 +9,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import srm.model.RegisteredResource;
-import srm.model.ResourceModel;
 public class RegisteredResourceDAO {
 
 		
 
-	    public ArrayList<ResourceModel> viewLocation() throws SQLException
+	    public ArrayList<RegisteredResource> viewLocation() throws SQLException
 	    {
-	    	ArrayList<ResourceModel> rms=new ArrayList<>();
+	    	ArrayList<RegisteredResource> rms=new ArrayList<>();
 	    	try
 	    	{
 	    		
@@ -33,7 +32,7 @@ public class RegisteredResourceDAO {
 	    			int r_id=data.getInt(4);
 	    			String specPurpose=data.getString(5);
 	    			int cap=data.getInt(6);
-	    			rms.add(new ResourceModel(id, name, l_id, r_id, specPurpose, cap));
+	    			rms.add(new RegisteredResource(id, name, l_id, r_id, specPurpose, cap));
 
 
 	    		}

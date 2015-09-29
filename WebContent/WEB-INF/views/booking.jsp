@@ -22,9 +22,9 @@
 		<tr><td>
 		<select id="resource" name="bresource">
 		        <option value="noresource">Select a Resource</option>
-			<option value="mr">Meeting Rooms</option>
-			<option value="ch">Conference Hall</option>
-			<option value="esc">Employee Seating Cubicles</option>
+		        <c:forEach items="${resources}" var="d">
+		        	<option value="${d}">${d}</option>
+		        </c:forEach>
 		</select>
 		</td></tr>
 		

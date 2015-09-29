@@ -14,6 +14,18 @@ public class RegisteredResource
 		this.capacity = capacity;
 	}
 	
+	// overloaded for ivan
+	
+	public RegisteredResource(int rr_id, String rr_name, int l_id, int r_id, String special_features, int capacity)
+	{
+		this.rr_id = rr_id;
+		this.rr_name = rr_name;
+		this.l_id = l_id;
+		this.r_id = r_id;
+		this.special_features = special_features;
+		this.capacity = capacity;
+	}
+	
 	public RegisteredResource() {} // For Bean usage
 	
 	public int getRr_id() {
