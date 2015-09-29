@@ -5,24 +5,17 @@
 <t:master>
 	<jsp:body>
 
-		<h1 class="title">Select a location</h1>
+		<div class="floating-box round-corners">
 		
-		NOTE: Need to populate this dropdown with business logic
-		<select id="location">
-			<option>Select a location</option>
-			<option value="mr">Location A</option>
-			<option value="ch">Location B</option>
-			<option value="esc">Location C</option>
-		</select>
+			<h3 class="title">Location Control Panel</h3>
+
+			<div class="nav">
+				<a class="btn btn-default" href="InsertLocation">Add Location</a>&nbsp;
+				<a class="btn btn-default" href="UpdateLocation">Update Location</a>&nbsp;
+				<a class="btn btn-default" href="DeleteLocation">Delete Location</a>&nbsp;
+				<a class="btn btn-default" href="LocationSummary">View Locations</a>
+			</div>
 		
-		<br>
-		
-		<div class="nav">
-			<a class="btn" href="InsertLocation">Add Location</a>&nbsp;
-			<a class="btn" href="UpdateLocation">Update Location</a>&nbsp;
-			<a class="btn" href="DeleteLocation">Delete Location</a>&nbsp;
-			<a class="btn" href="LocationSummary">View Locations</a>&nbsp;
-			
 		</div>
 
 	</jsp:body>
