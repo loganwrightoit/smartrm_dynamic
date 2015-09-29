@@ -27,7 +27,7 @@ public class UpdateResource extends HttpServlet {
 		Object obj = request.getParameter("rr_id");
 		if (obj != null) {
 			// Save in session for deletion later
-			session.setAttribute("rr_id", Integer.parseInt(obj.toString()));
+			request.setAttribute("rr_id", Integer.parseInt(obj.toString()));
 			
 			// Generate resource values for fields in JSP
 			RegisteredResourceDAO dao = new RegisteredResourceDAO();
