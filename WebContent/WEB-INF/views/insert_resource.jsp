@@ -21,7 +21,7 @@
 							<option>Select a Resource Type</option>
 							<option value="ch">Conference Hall</option>
 							<option value="esc">Employee Seating Cubicle</option>
-							<option value="mr">Delete Resource</option>
+							<option value="mr">Meeting Room</option>
 						</select>
 					</td>
 				</tr>
