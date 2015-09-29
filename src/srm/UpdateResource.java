@@ -51,7 +51,9 @@ public class UpdateResource extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		
+		HttpSession session = request.getSession();
+		int rr_id = (int) session.getAttribute("rr_id");
+		RegisteredResourceDAO dao = new RegisteredResourceDAO();
 	}
 
 }
