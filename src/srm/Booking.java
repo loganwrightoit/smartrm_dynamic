@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import srm.dao.LocationDAO;
+import srm.dao.RegisteredResourceDAO;
 import srm.model.LocationModel;
+import srm.model.RegisteredResource;
 
 
 @WebServlet("/Booking")
@@ -54,6 +56,22 @@ public class Booking extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			RegisteredResourceDAO d2 = new RegisteredResourceDAO();
+			ArrayList<RegisteredResource> rrmodellist;
+			try
+			{
+				rrmodellist = d2.viewLocation();
+				
+			}
+			catch(SQLException e)
+			{
+				
+			}
+			
+			
+			
+			
 			
 		}
 	}

@@ -22,7 +22,35 @@ public class BookMeetingRoom extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		/* to book meeting room, we require to insert the following record into the booking table
+		 * 
+		 *  // fetch from db the l_id from location table
+		 *  // fetch from db the r_id from locationresource table
+		 *  // create entry into registeredresource  table 
+		 *  	we get rr_name from the form n 
+		 *  	we get special_features from the form
+		 *  	we get capacity from the form
+		 *  
+		 *  // now, get the id of newly entered registeredresource table and use that to enter in booking table
+		 *  	whose values are below
+		 * 
+		 * b_id number primary key,
+	l_id number not null,
+	rr_id number not null,
+	u_id number not null,
+	start_time timestamp not null,
+	end_time timestamp not null,
+	special_requests varchar(1000),
+	purpose varchar(1000),
+	constraint fklocationid foreign key (l_id) references location(l_id),
+	constraint fkrrid foreign key (rr_id) references registeredresource(rr_id),
+	constraint fkuid foreign key (u_id) references userdata(u_id));
+	
+		 */
+		
+		int l_id;
+		int r_id;
+		
 	}
 
 }
