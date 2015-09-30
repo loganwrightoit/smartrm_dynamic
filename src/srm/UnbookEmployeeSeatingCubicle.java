@@ -29,10 +29,11 @@ public class UnbookEmployeeSeatingCubicle extends HttpServlet {
 		HttpSession s=req.getSession(true);//true creates new session, even if it exists
 		//blank: if session exists, open it, and if it doesn't, create new one
 		int bId=Integer.parseInt(req.getParameter("b_id"));//get  the parameter equal to the name in the input box in the html file
+		String rName=req.getParameter("rr_name");
 		try
 		{
 			BookingDAO d=new BookingDAO();
-			boolean works=d.unbookConferenceHall(bId);
+			boolean works=d.unbookEmployeeSeatingCubible(bId, rName);
 		}
 		catch (SQLException e)
 		{

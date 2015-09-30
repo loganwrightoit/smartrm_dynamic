@@ -112,6 +112,7 @@ public class BookingDAO {
 			if(res>0)
 			{
 				System.out.println("Booking inserted");
+				System.out.println(res);
 				return true;
 			}
 			else
@@ -201,14 +202,16 @@ public class BookingDAO {
 		}
 	}
 	
-	public boolean unbookConferenceHall(int bid) throws SQLException
+	public boolean unbookConferenceHall(int bid, String rName) throws SQLException
 	{
 		try
 		{
-			String delSt = "Delete from Booking where b_id = ?";
+			String delSt = "Delete from Booking b, registeredresource rr where b.b_id = ? AND rr.rr_name=? " +
+					"AND rr.rr_id=b.rr_id AND rr.r_id=2";
 			PreparedStatement stat = DB.getDBConnection().prepareStatement(delSt);
 			
 			stat.setInt(1, bid);
+			stat.setString(2, rName);
 			
 			int res = stat.executeUpdate();
 			if(res>0)
@@ -274,14 +277,16 @@ public class BookingDAO {
 		}
 	}
 	
-	public boolean unbookEmployeeSeatingCubible(int bid) throws SQLException
+	public boolean unbookEmployeeSeatingCubible(int bid, String rName) throws SQLException
 	{
 		try
 		{
-			String delSt = "Delete from Booking where b_id = ?";
+			String delSt = "Delete from Booking b, registeredresource rr where b.b_id = ? AND rr.rr_name=? " +
+					"AND rr.rr_id = b.rr_id AND rr.r_id = 3";
 			PreparedStatement stat = DB.getDBConnection().prepareStatement(delSt);
 			
 			stat.setInt(1, bid);
+			stat.setString(2, rName);
 			
 			int res = stat.executeUpdate();
 			if(res>0)
@@ -289,11 +294,15 @@ public class BookingDAO {
 				System.out.println("Delete success");
 				return true;
 			}
+			
+			
 			else
 			{
 				System.out.println("Error deleting");
 				return false;
 			}
+			
+			
 		}
 		catch(Exception e)
 		{
