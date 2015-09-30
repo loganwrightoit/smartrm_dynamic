@@ -12,8 +12,8 @@
 <form method="post">
     <table>
 			<tr>
-				<td>Resource name:</td>
-				<td><input type="number" min="1" name="r_name" Required></td>
+				<td>Cubicle name:</td>
+				<td><input type="text" name="rr_name" Required /></td>
 			</tr>
 			<tr>
 				<td>Booking ID:</td>

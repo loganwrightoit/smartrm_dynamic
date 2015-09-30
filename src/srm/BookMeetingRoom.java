@@ -89,6 +89,7 @@ public class BookMeetingRoom extends HttpServlet {
 			int rr_id = rdao.getSequenceNumber();
 			// create entry into booking table
 			status = bdao.bookMeetingRoom(l_id, rr_id, u_id, starttime, endtime, specialrequests, purpose);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

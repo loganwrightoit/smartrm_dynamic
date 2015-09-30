@@ -10,6 +10,11 @@
 	<center>
 	<form method="post">
 		<table>
+
+			<tr>
+				<td>Conference Hall name:</td>
+				<td><input type="text" name="rr_name" Required /></td>
+			</tr>
 			
 			<tr>
 				<td>Booking ID:</td>
