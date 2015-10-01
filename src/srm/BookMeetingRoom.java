@@ -67,6 +67,7 @@ public class BookMeetingRoom extends HttpServlet {
 		int l_id;
 		int r_id;
 		int u_id;
+		int rr_id = 0;
 		
 		locationname = s.getAttribute("pickedlocation").toString(); // location name
 		//resourcename = s.getAttribute("pickedresource").toString(); // registeredresource name
@@ -86,7 +87,7 @@ public class BookMeetingRoom extends HttpServlet {
 			l_id = ldao.viewLocationByName(locationname).getId();
 			// create entry into registeredresource table
 			rdao.insertRegisteredResource(rName, l_id, r_id, specFeatures, cap);
-			int rr_id = rdao.getSequenceNumber();
+			rr_id = rdao.getSequenceNumber()-1;
 			// create entry into booking table
 			status = bdao.bookMeetingRoom(l_id, rr_id, u_id, starttime, endtime, specialrequests, purpose);
 			
@@ -97,9 +98,8 @@ public class BookMeetingRoom extends HttpServlet {
 		
 		if(status)
 		{
-			PrintWriter pw = response.getWriter();
-			pw.print("Book Inserted!");
-			
+			String param = "Booking Inserted! - Booking ID: " + Integer.toString(rr_id);
+			response.sendRedirect("Booking?success="+ param);
 		}
 	}
 

@@ -50,6 +50,12 @@
 					    	<h4 class="failure">${message}</h4>
 					    </div>
 					</c:if>
+					
+					<c:if test="${not empty param.success}">
+						<div class="floating-box round-corners">
+					    	<h4 class="donecreation">${param.success}</h4>
+					    </div>
+					</c:if>
 			
 				<jsp:doBody/>
 				
