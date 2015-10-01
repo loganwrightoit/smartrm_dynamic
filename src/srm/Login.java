@@ -43,6 +43,7 @@ public class Login extends HttpServlet {
 			session.setAttribute("logged_in", true);
 			session.setAttribute("u_name", u_name);
 			session.setAttribute("u_level", user.getU_level());
+			session.setAttribute("u_id",user.getU_id());
 			response.sendRedirect(request.getContextPath() + "/Main");
 			return;
 		}

@@ -4,34 +4,41 @@
 
 <t:master>
 	<jsp:body>
+
+		<div class="floating-box round-corners">
+		
+			<h3 class="title">Delete a Resource</h3>
 	
-		<h3>Delete a Resource</h3>
+			<div class="form-group">
+				<label>Select Resource</label>
+				<br>
+				<form method="get">
+					<select name="rr_id" onchange="this.form.submit()" class="form-control" required>
+						<option value="">Select a Resource</option>
+						<c:forEach items="${resources}" var="item">
+							<option value="${item.rr_id}" ${rr_id==item.rr_id?'selected':''}>${item.rr_name}</option>
+						</c:forEach>
+					</select>
+				</form>
+			</div>
+			
+			<form method="post">
+				<div class="form-group">
+					<label>Name</label>
+					<input type="text" class="form-control" value="${rr_name}" disabled>
+				</div>
+				<div class="form-group">
+					<label>Capacity</label>
+					<input type="number" class="form-control" value="${capacity}" disabled>
+				</div>
+				<div class="form-group">
+					<label>Special Features</label>
+					<textarea style="background-color: rgb(238,238,238);" class="form-control" disabled>${special_features}</textarea>
+				</div>
+				<button type="submit" class="btn btn-default">Delete</button>
+			</form>
 		
-		<form method="get">		
-			<h4>Select a Resource</h4>
-			<select name="rr_id" onchange="this.form.submit()">
-				<option>Select a Resource</option>
-				<c:forEach items="${resources}" var="item">
-					<option value="${item.rr_id}">${item.rr_name}</option>
-				</c:forEach>
-			</select>
-		</form>
-		
-		<form method="post">
-			<div class="form-group">
-				<label for="aName">Name</label>
-				<input type="text" class="form-control" id="aName" value="${rr_name}" disabled>
-			</div>
-			<div class="form-group">
-				<label for="aCapacity">Capacity</label>
-				<input type="number" class="form-control" id="aCapacity" value="${capacity}" disabled>
-			</div>
-			<div class="form-group">
-				<label for="aSpecial">Special Features</label>
-				<textarea>${special_features}</textarea>
-			</div>
-			<button type="submit" class="btn btn-default">Delete</button>
-		</form>
+		</div>
 	
 	</jsp:body>
 </t:master>

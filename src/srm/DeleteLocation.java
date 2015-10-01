@@ -2,8 +2,10 @@ package srm;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import srm.dao.LocationDAO;
+import srm.dao.RegisteredResourceDAO;
+import srm.model.LocationModel;
+import srm.model.RegisteredResource;
 
 /**
  * Servlet implementation class DeleteLocation
@@ -48,11 +53,32 @@ public class DeleteLocation extends HttpServlet
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
 	{
-
-		RequestDispatcher rd=req.getRequestDispatcher("/WEB-INF/views/location_delete.jsp");
-		rd.include(req, res);
+		Object obj = request.getParameter("l_id");
+		if (obj != null) {
+			request.setAttribute("l_id", Integer.parseInt(obj.toString()));
+			try {
+				LocationDAO dao = new LocationDAO();
+				LocationModel loc = dao.viewLocationById(Integer.parseInt(obj.toString()));
+				request.setAttribute("description", loc.getDescription());
+				request.setAttribute("city", loc.getCity());
+				request.setAttribute("country", loc.getCountry());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		LocationDAO dao = new LocationDAO();
+		try {
+			ArrayList<LocationModel> locations = dao.viewLocation();
+			request.setAttribute("locations", locations);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/views/location_delete.jsp");
+		rd.include(request, response);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {

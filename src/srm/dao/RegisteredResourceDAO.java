@@ -14,6 +14,50 @@ import srm.model.RegisteredResource;
 public class RegisteredResourceDAO
 {
 
+	public int getSequenceNumber() throws SQLException
+	{
+		String seqSt="SELECT rr_id_seq.NEXTVAL FROM dual";
+		Connection con=DB.getDBConnection();
+		Statement st=con.createStatement();
+		ResultSet r=st.executeQuery(seqSt);
+		r.next();
+		int seqNum=r.getInt(1);
+		st.close();
+		return seqNum;
+	}
+	public RegisteredResource viewRegisteredResourceByName(String qname) throws SQLException
+	{
+		RegisteredResource rms = null;
+		try
+		{
+			String selSt="Select * FROM registeredresource where rr_name = ?";
+    		PreparedStatement stat=DB.getDBConnection().prepareStatement(selSt);
+    		stat.setString(1, qname);
+    		ResultSet data=stat.executeQuery();
+    		ResultSetMetaData meta=data.getMetaData();
+    		int colCount=meta.getColumnCount();
+    		while(data.next())
+    		{
+    			int id=data.getInt(1);
+    			String name=data.getString(2);
+    			int l_id=data.getInt(3);
+    			int r_id=data.getInt(4);
+    			String specPurpose=data.getString(5);
+    			int cap=data.getInt(6);
+    			
+    			rms = new RegisteredResource(id,name,l_id,r_id,specPurpose,cap);
+    		}
+		}
+
+    	catch(Exception e)
+    	{
+    		System.out.println("Error while viewing");
+    		e.printStackTrace();
+    		throw new SQLException();
+    	}
+    	return rms;
+	}
+	
 	public RegisteredResource viewResource(int rr_id)
 	{
 		try
@@ -118,17 +162,10 @@ public class RegisteredResourceDAO
 		{
 			try
 			{
-				String seqSt="SELECT rr_id_seq.NEXTVAL FROM dual";
-				Connection con=DB.getDBConnection();
-				Statement st=con.createStatement();
-				ResultSet r=st.executeQuery(seqSt);
-				r.next();
-				int seqNum=r.getInt(1);
-				st.close();
-				
+				int curSeqValue=getSequenceNumber();
 				String insSt="INSERT INTO registeredresource VALUES (?, ?, ?, ?, ?, ?)";
 				PreparedStatement stat=DB.getDBConnection().prepareStatement(insSt);
-				stat.setInt(1, seqNum);
+				stat.setInt(1, curSeqValue);
 				stat.setString(2, rName);
 				stat.setInt(3, lId);
 				stat.setInt(4, rId);

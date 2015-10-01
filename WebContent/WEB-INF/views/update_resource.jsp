@@ -5,33 +5,41 @@
 <t:master>
 	<jsp:body>
 	
-		<h3>Update a Resource</h3>
+		<div class="floating-box round-corners">
+
+			<h3 class="title">Update a Resource</h3>
+
+			<form method="get">
+				<div class="form-group">
+					<label>Select Resource</label>
+					<br>
+					<select name="rr_id" onchange="this.form.submit()" class="form-control" required>
+						<option value="">Select a Resource</option>
+						<c:forEach items="${resources}" var="item">
+							<option value="${item.rr_id}" ${rr_id==item.rr_id?'selected':''}>${item.rr_name}</option>
+						</c:forEach>
+					</select>
+				</div>				
+			</form>
+			
+			<form method="post">
+				<div class="form-group">
+					<label>Name</label>
+					<input type="text" class="form-control" name="rr_name" value="${rr_name}" required>
+				</div>
+				<div class="form-group">
+					<label>Capacity</label>
+					<input type="number" class="form-control" name="capacity" value="${capacity}" required>
+				</div>
+				<div class="form-group">
+					<label>Special Features</label>
+					<br>
+					<textarea name="special_features" class="form-control">${special_features}</textarea>
+				</div>
+				<button type="submit" class="btn btn-default">Save</button>
+			</form>
 		
-		<form method="get">		
-			<h4>Select a Resource</h4>
-			<select name="rr_id" onchange="this.form.submit()">
-				<option>Select a Resource</option>
-				<c:forEach items="${resources}" var="item">
-					<option value="${item.rr_id}">${item.rr_name}</option>
-				</c:forEach>
-			</select>
-		</form>
-		
-		<form method="post">
-			<div class="form-group">
-				<label for="aName">Name</label>
-				<input type="text" class="form-control" id="aName" name="rr_name" value="${rr_name}">
-			</div>
-			<div class="form-group">
-				<label for="aCapacity">Capacity</label>
-				<input type="number" class="form-control" id="aCapacity" name="capacity" value="${capacity}">
-			</div>
-			<div class="form-group">
-				<label for="aSpecial">Special Features</label>
-				<textarea name="special_features">${special_features}</textarea>
-			</div>
-			<button type="submit" class="btn btn-default">Save</button>
-		</form>
+		</div>
 	
 	</jsp:body>
 </t:master>
